@@ -1,0 +1,79 @@
+<!--
+	author: g33kyAnand
+-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title> NITN-AMS | Welcome - {{reg_no}} </title>
+    <link rel="stylesheet" href="{% static 'student/css/student-home.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+</head>
+<body>
+	<div class="ams-navbar">
+		<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
+			<img class="ams-logo" src="{% static 'student/img/nitn_logo.png' %}">
+		</a>
+		<h1> NIT Nagaland - Attendance Management System  </h1>
+		<a  class="student-logout" href="{% url 'student_logout' %}"> LOGOUT </a>
+	</div>
+
+
+
+	<div id="wrapper">
+	    <div id="leftcolumn">
+	    	<div class="ams-details_wrapper">
+				<div class="id_card" id="V_Card" style="display:flex;flex-direction:column;">
+					<div id="card_head" style="background:#025402;height:30%;border-top-right-radius:12px;display:flex;border-top-left-radius:12px;order:1">
+						<img src="{% static 'student/img/nitn_logo.png' %}" style="opacity:.9;height:75px;margin-left:8px;margin-top:4px;order:1;"/>
+						<div id="header_div" style="color:white;order:2;width:100%;font-size:15px;text-align:center;display:flex;flex-direction:column;">
+							<p style="margin-top:12px;"><b>राष्ट्रीय प्रौद्योगिकी संस्थान नागालैंड <br>NATIONAL INSTITUTE OF TECHNOLOGY NAGALAND</b></p>
+							<p style="line-height:20px;">(An Institue of National Importance under MHRD,Government of India)<br>Chumukedima, Dimapur, Nagaland - 797 103</p>
+					</div>
+				</div>
+				
+				
+				<div id="card_body" style="display:flex;height:230px;order:3;font-size:17px;color:black;">
+					<div id="card_write" style="order:1;margin-left:12px;width:75%;margin-top:-25px;text-align: left;">
+						<br><br><b>Student Name  </b>: {{user_instance.name}}
+						<br><br><b>Registration No. </b>: {{user_instance.reg_no}}
+						<br><br><b>Branch </b>: {{user_instance.department}}
+						<br><br><b>Semester</b>: {{ stu_sem }}
+						<br><br><b>Contact Number </b>: 7042710012
+					</div>
+					<img class="img_class"style="order:2;width:160px;margin-top:20px;margin-right: 18px;margin-bottom: 47px;" id="stud_img" alt="Photo of Student" src="{% static 'student/img/studentPhoto.png' %}" alt="Photo of Student">
+				</div>
+				</div>
+			</div>
+	    </div>
+	    <div id="rightcolumn">
+	       <div class="ams-attendance_table">
+	       	<h1>Attendance Statistics</h1>
+			<div class="ams-table">
+	            <table class="ams-table__table">
+	                <tr class="ams-table-header">
+	                    <td>Course Code</td>
+	                    <td> Total Classes</td>
+	                    <td> Attended</td>
+	                    <td> Attendance %</td>
+
+					</tr>
+					{% for attendance in att_data_list %}
+	                <tr class="ams-table__row ams-table-header">
+	                    <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.course_code }}</span></td>
+	                    <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.total_classes }}</span></td>
+	                    <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.attended }}</span></td>
+	                    <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.percent|floatformat:1 }}</span></td>
+	                    
+					</tr>
+					{% endfor %}
+	            </table>
+        	</div>
+    	</div>	
+	    </div>
+	</div>
+    
+</body>

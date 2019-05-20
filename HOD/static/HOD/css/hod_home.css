@@ -1,0 +1,140 @@
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    min-width: 105px;
+    text-align: center;
+
+}
+
+/* Nav Bar of the page */
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.ams-hod_navbar{
+    width: 100%;
+    min-width: 1130px;
+    height: 60px;
+    line-height: 60px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.ams-navbar_logo img{
+	position: absolute;
+	padding-top: 5px;	
+	left: 10px;
+	width: 50px;
+	height: 50px;
+}
+
+.ams-navbar_logo > span{
+    float: left;
+    margin-left: 70px;
+}
+.ams-navbar_links{
+  width: fit-content;
+  float: right;
+}
+
+
+.dropbtn {
+  background-color: #fff;
+  padding: 16px;
+  font-size: 16px;
+  width: auto;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  width: inherit;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 168px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 0 2px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #2C5505;
+  color: white;
+}
+
+
+
+.hod_course_allot_table{
+  margin: 0 auto;
+  top: 5%;
+  width: 600px;
+  
+ 
+}
+
+/*
+.attend-table{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+th{
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px;
+  height: 50px;
+}
+
+tr{
+  padding: 10px;
+  height: 40px;
+}
+.attend-table, th, td{
+  border: 1px solid saddlebrown;
+  vertical-align: middle;
+}
+*/
+
+.option_picker{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ select{
+	padding: 4px 10px;
+	background-color: #2C5505;
+	margin-right: 30px;
+	color: white;
+	font-size: 16px;
+	display: inline-block;
+}
+option{
+	padding: 5px 10px;
+}
+option:hover{
+	opacity: 0.6;
+}

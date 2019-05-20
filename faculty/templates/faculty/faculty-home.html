@@ -1,0 +1,34 @@
+<!--
+	author: g33kyAnand
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NITN-AMS | Faculty Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+	
+</head>
+<body>
+	<div class="ams-faculty_navbar">
+		<div class="ams-navbar_logo">
+			<img src="{% static 'faculty/img/nitn_logo.png' %}">
+			<span> NITN-Attendance Management System</span>
+		</div>
+
+		<div class="ams-navbar_links">
+			<ul>
+				<a href="{% url 'update_attend' %}"><li>UPDATE ATTENDANCE</li></a>
+				<a href="{% url 'faculty_logout' %}"><li> LOGOUT </li></a>
+			</ul>
+		</div>
+	</div>
+
+	<div class="site-container">
+
+	</div>
+
+<script src="{% static 'faculty/js/faculty.js' %}"></script>
+</body>
+</html>

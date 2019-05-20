@@ -1,0 +1,100 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+	<title>NITN-AMS | Faculty Home</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">
+
+	
+</head>
+<body>
+	<div class="ams-hod_navbar">
+		<div class="ams-navbar_logo">
+			<img src="{% static 'faculty/img/nitn_logo.png' %}">
+			<span> NITN-Attendance Management System</span>
+		</div>
+
+		<div class="ams-navbar_links">
+			<div class="dropdown">
+				<button class="dropbtn">ALLOT COURSES</button>
+				<div class="dropdown-content">
+					{% for num in sem %}
+					<a href="{% url 'course_settings' num %}">Semester {{ num }}</a>
+					{% endfor %}
+				</div>
+				</div>
+				<div class="dropdown">
+						<button class="dropbtn">VIEW / MODIFY ATTENDANCE</button>
+						<div class="dropdown-content">
+								<a href="{% url 'attendance_viewer' %}"> VIEW ATTENDANCE </a>
+								<a href="{% url 'attendance_modifier' %}"> MODIFY ATTENDANCE </a>
+							</div>
+					</div>
+				<div class="dropdown">
+					<a href="{% url 'view_courses' %}"><button class="dropbtn">VIEW ALLOTED COURSES</button></a>
+				</div>
+			  <div class="dropdown">
+				<a href="{% url 'hod_logout' %}"><button class="dropbtn">LOGOUT</button></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="site-container">
+		<div class="option-picker">	
+			<form method="POST" name="select_option_form" >
+				{% csrf_token %}
+			<input type="text" name="hod_attend_edit_regno" id="hod_inp_regno" minlength="10" maxlength=10 required placeholder="Registration no.">
+			<button type="submit" name="att_mod_filter_btn" id="submit_option_selector">SUBMIT</button>
+		</form>
+		</div>	
+	
+		{% if attendance %}
+		<div class="attendance-editor">
+			<table class="attend-table">
+				<thead>
+					<th>Registration No</th>
+					<th>Name</th>
+					{% for course_code in attendance.courses %}
+					<th>{{ course_code }}</th>
+					{% endfor %}
+				</thead>
+				<tbody>
+					<tr>
+							<td>{{ attendance.reg_no }}</td>
+							<td>{{ attendance.stu_name }}</td>
+							{% for percent in attendance.percentages %}
+							<td>{{ percent|floatformat:1 }}</td>
+							{% endfor %}
+						</tr>
+				</tbody>
+			</table>
+			<form method="POST" id="attendance_form">
+				{% csrf_token %}
+				<input type="hidden" name="hod_attend_edit_reg_no" value="{{ attendance.reg_no }}">
+				<input type="date" name="hod_attend_edit_start_date" id="hod_inp_start_dt" min="{{ attendance.min_date }}" required onchange="document.getElementById('hod_inp_end_dt').value = this.value">
+				<input type="date" name="hod_attend_edit_end_date" id="hod_inp_end_dt" max="{{ attendance.max_date }}" required>
+				<button type="submit" name="att_data_submit_btn" id="att_data_submit_btn" form="attendance_form">SUBMIT</button>
+			</form>
+		</div>
+		{% elif invalid_reg %}
+		<div>
+			<h3>Please enter a valid registration number.</h3>
+		</div>
+		{% elif not_found %}
+		<div>
+			<h3>No student found for given registration number.</h3>
+		</div>
+		{% endif %}
+
+	</div>
+
+<script src="{% static 'faculty/js/faculty.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- Developed by binaryMonk -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset your password</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'authentication/css/style.css' %}">
+
+</head>
+<body>
+<div class="container">
+    <a target="_blank" href="https://nitnagaland.ac.in/">
+        <img src="{% static 'authentication/img/nitn_logo.png' %}" alt="National Institute Of Technology Nagaland">
+    </a><br><br>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="email" name="emailToReset" placeholder="Enter your Email" required autofocus><br><br>
+            <button type="submit" class="outline white-blue">RECOVER</button>
+            <br><br><br>
+        </div>
+    </form>
+</div>
+</body>
+</html>
