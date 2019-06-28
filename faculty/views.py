@@ -11,13 +11,14 @@ def faculty(request):
         return redirect('home')
     if request.session.get('hod_logged'):
         return redirect('hod_index')
+    
     username = request.session.get('username')
     if len(username) == 10:
         return redirect('student')
-    
     else:
         faculty = FacultyProfile.objects.get(faculty_id=username)
         return render(request, 'faculty/faculty-home.html', {'user_instance': faculty})
+
 
 def update_attend(request):
     if not request.session.get('logged'):
@@ -54,6 +55,37 @@ def update_attend(request):
     else:
         filters = _get_filters(username=username)
         return render(request, 'faculty/update_attend.html', {'user_instance': faculty, 'filters':filters,'user_set': {}})
+
+
+def view_attend(request):
+    if request.session.get('hod_logged'):
+        return redirect('hod_index')
+    if not request.session.get('logged'):
+        return redirect('home')
+
+    username = request.session.get('username')
+    if request.method == 'GET':
+        faculty = FacultyProfile.objects.get(faculty_id=username)
+        return render(request, 'faculty/view_attend.html', {'filters': _get_historical_course_filter(username=username), 'freshpage':True} )
+    else:
+        faculty = FacultyProfile.objects.get(faculty_id=username)
+        
+        selected_year = request.POST.get('select_year')
+
+        selected_semester = request.POST.get('select_semester')
+        selected_semester = None if (selected_semester == '' or selected_semester is None) else int(selected_semester)
+
+        selected_course = request.POST.get('select_course_code')
+        selected_course = None if selected_course == '' else selected_course
+
+        filters = _get_historical_course_filter(username=username, selected_year=selected_year, selected_semester=selected_semester, selected_course=selected_course)
+        if selected_course is None:
+            return render(request, 'faculty/view_attend.html', {'filters': filters})
+        else:
+            attendance_list = _get_attendance_data_for_course(selected_course)
+            return render(request, 'faculty/view_attend.html', {'filters': filters, 'attendance':attendance_list})
+
+
 
 def faculty_logout(request):
     request.session.clear()
@@ -105,5 +137,71 @@ def _save_attendance_data(post_array):
             if stu_inst is not None:
                 attend_instance = attendance.objects.create(reg_no=stu_inst, date=date, course_code=course_code, attendance=value, if_mod=False)
                 attend_instance.save()
-        
-            
+
+
+def _get_historical_course_filter(username=None, selected_year=None, selected_semester=None, selected_course=None):
+    if username is None:
+        return dict()
+    else:
+        try:
+            allotted_courses = list(Course_allot.objects.filter(faculty_id=username).values('year', 'course_code', 'semester').distinct())
+            courses = list()
+            years = list()
+            semesters = list()
+
+            for course in allotted_courses:
+
+                year = course.get('year')
+                if year == selected_year:
+                    this_year = {'value':year, 'checked':True}
+                else:
+                    this_year = {'value':year, 'checked':False}
+                if this_year not in years:
+                    years.append(this_year)
+
+                if selected_year is not None:
+                    semester = course.get('semester')
+                    if semester == selected_semester:
+                        this_sem = {'value':semester, 'checked':True}
+                    else:
+                        this_sem = {'value':semester, 'checked':False}
+                    if this_sem not in semesters:
+                        semesters.append(this_sem)
+
+                if  selected_semester is not None:
+                    course_code = course.get('course_code')
+                    if course_code == selected_course:
+                        courses.append({'course_code':course_code, 'checked':True})
+                    else:
+                        courses.append({'course_code':course_code, 'checked':False})
+
+            attendance_filters = {'courses':courses, 'years':years, 'semesters':semesters}
+            return attendance_filters
+
+        except Course_allot.DoesNotExist:
+            return dict()
+
+
+def _get_attendance_data_for_course(course_code):
+
+    try:
+        students = list(attendance.objects.filter(course_code=course_code).values_list('reg_no', flat=True).distinct().order_by('reg_no'))
+    except attendance.DoesNotExist:
+        return dict()
+    attendance_data = dict()
+    student_attendance_list = []
+    max_classes = 0
+    for reg_no in students:
+
+        total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).count()
+        present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').count()
+        if total != 0:
+            nocourse = False
+            if total > max_classes:
+                max_classes = total
+    
+        student_attendance_list.append({'reg_no':reg_no, 'present':present})
+    attendance_data['total'] = max_classes
+    attendance_data['students'] = student_attendance_list
+
+    return attendance_data

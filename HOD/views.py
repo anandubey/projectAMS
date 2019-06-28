@@ -130,6 +130,55 @@ def attendance_modifier(request):
     else:
         return render(request, 'HOD/hod_attend_edit.html', {'sem': semesters})
 
+def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
+    notLoggedAccessPageContent = """
+        You must login as HOD to see this page.
+        <br>
+        <input type="button" onclick="window.close()" value="Close this window">
+    """
+    logged = request.session.get('logged')
+    hod_logged = request.session.get('hod_logged')
+    if not (logged and hod_logged):
+        return HttpResponse(notLoggedAccessPageContent)
+
+    template_data = dict()
+    if sem is None or reg_no is None:
+        return redirect('attendance_viewer')
+    else:
+        try:
+            student = StudentProfile.objects.get(reg_no=reg_no)
+        except StudentProfile.DoesNotExist:
+            template_data['invalid_reg'] = True
+            return render(request, 'HOD/hod_attend_view_student.html', template_data)
+
+        logged_username = request.session.get('username')
+        try:
+            hod = Hod_credential.objects.get(hod_id=logged_username)
+            if student.department != hod.department:
+                template_data['invalid_reg'] = True
+            else:
+                courses = Semester_wise_course.objects.get(department=student.department, semester=sem).courses.split('-')
+                att_data_list = []                                         # using list of dictionaries to store attendance 
+                for course_code in courses:
+                    total = attendance.objects.filter(reg_no=student, course_code=course_code).count()
+                    present = attendance.objects.filter(reg_no=student, course_code=course_code, attendance='P').count()
+                    if total != 0:
+                        percent_present = (present/total)*100
+                    else:
+                        percent_present = 0.0
+                    less_attendance = False
+                    if percent_present < 75:
+                        less_attendance = True
+                    att_data = {'course_code':course_code, 'total_classes':total, 'attended':present, 'percent':percent_present, 'less_attend':less_attendance}
+                    att_data_list.append(att_data)
+                template_data['user_instance'] = student
+                template_data['att_data_list'] = att_data_list
+                template_data['stu_sem'] = sem
+            return render(request, 'HOD/hod_attend_view_student.html', template_data)
+
+        except Hod_credential.DoesNotExist:
+            return redirect('attendance_viewer')
+
 def attendance_viewer(request):
     semesters = _get_semesters(request)
     department = Hod_credential.objects.get(hod_id=request.session.get('username')).department
@@ -147,7 +196,7 @@ def attendance_viewer(request):
         semester_filter = _get_semesters_filter(request, selected=selected_semester)
         attendance_data = _get_attendance_data_for_batch(department, batch=selected_batch, semester=selected_semester)
         
-        template_data = {'sem': semesters, 'batch_filter':batch_filter, 'semester_filter':semester_filter, 'attendance':attendance_data}
+        template_data = {'sem': semesters, 'batch_filter':batch_filter, 'semester_filter':semester_filter, 'attendance':attendance_data, 'selected_semester':selected_semester}
         return render(request, 'HOD/hod_attend_view.html', template_data)
     else:
         batch_filter = _get_batches_filter(selected=None)

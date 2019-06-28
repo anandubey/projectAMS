@@ -71,24 +71,37 @@
 		{% if attendance %}
 		<div class="attendance-editor">
 			<table class="attend-table">
-				<thead>
-					<th>Registration No</th>
-					{% for course_code in attendance.courses %}
-					<th>{{ course_code }}</th>
-					{% endfor %}
-				</thead>
-				<tbody>
-						{% for student in attendance.students %}
-						<tr>
-							<td>{{ student.reg_no }}</td>
-							{% for percentage in student.percent %}
-							<td>{{ percentage|floatformat:1 }}%</td>
+				<form method="POST" id="attendance_form">
+					{% csrf_token %}
+					<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
+					<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
+				
+					<thead>
+						<th>Registration No</th>
+						<th>Name</th>
+						<th>Attendance</th>
+					</thead>
+					<tbody>
+						
+							{% for student in user_set %}
+							<tr>
+								<td>{{ student.reg_no }}</td>
+								<td>{{ student.name }}</td>
+								<td>
+									<label class="label_present">
+										<input type="radio" value="P" name="reg_{{ student.reg_no }}" required/><span>P</span>
+									</label>
+									<label class="label_absent">
+										<input type="radio" value="A" name="reg_{{ student.reg_no }}" required/><span>A</span>
+									</label>			
+								</td>
+							</tr>
 							{% endfor %}
-						</tr>
-						{% endfor %}
-				</tbody>
+						
+					</tbody>
+				</form>
 			</table>
-		</div>
+			</div>
 		{% elif not freshpage %}
 		<div>
 			No student found for selected semester and batch.

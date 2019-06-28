@@ -20,7 +20,7 @@ def student(request):
             if total != 0:
                 percent_present = (present/total)*100
             else:
-                percent_present = 100
+                percent_present = 0.0
             less_attendance = False
             if percent_present < 75:
                 less_attendance = True

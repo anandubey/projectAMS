@@ -1,0 +1,66 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+	<title>NITN-AMS | Faculty Home</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">
+
+	
+</head>
+<body>
+	<div class="ams-hod_navbar">
+		<div class="ams-navbar_logo">
+			<img src="{% static 'faculty/img/nitn_logo.png' %}">
+			<span> NITN-Attendance Management System</span>
+		</div>
+
+	</div>
+
+	<div class="site-container">	
+		{% if not invalid_reg %}
+	    <div id="rightcolumn">
+			<div class="ams-attendance_table">
+				<h3>Attendance Statistics</h3>
+				<h2>{{ user_instance.reg_no }} : {{ user_instance.name }}</h2>
+			 <div class="ams-table">
+				 <table class="ams-table__table">
+					 <tr class="ams-table-header">
+						 <td>Course Code</td>
+						 <td> Total Classes</td>
+						 <td> Attended</td>
+						 <td> Attendance %</td>
+ 
+					 </tr>
+					 {% for attendance in att_data_list %}
+					 <tr class="ams-table__row ams-table-header">
+						 <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.course_code }}</span></td>
+						 <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.total_classes }}</span></td>
+						 <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.attended }}</span></td>
+						 <td class="ams-table__cell"><span class="ams-table__value">{{ attendance.percent|floatformat:1 }}</span></td>
+						 
+					 </tr>
+					 {% endfor %}
+				 </table>
+			 </div>
+		 </div>	
+		 </div>
+		{% else %}
+		<div>
+			Invalid registration number given.
+		</div>
+		{% endif %}
+
+	</div>
+	<div>
+		<input type="button" onclick="window.close()" value="Close this window">
+	</div>
+<script src="{% static 'faculty/js/faculty.js' %}"></script>
+</body>
+</html>
