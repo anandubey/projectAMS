@@ -18,23 +18,22 @@ def index(request):
             messages.error(request, "Wrong credentials!")
             return redirect('hod_index')
     else:
-        logged = request.session.get('logged')
-        hod_logged = request.session.get('hod_logged')
-        if not (logged and hod_logged):
+        if not request.session.get('logged'):
             return render(request, 'HOD/hod_index.html',{})
+        user_type = request.session.get('user_type')
+        if user_type != 'HOD':
+            return redirect('home')
         else:
             return redirect('hod_dashboard')
 
 
 def dashboard(request):
-    hod_is_logged = request.session.get('logged') and request.session.get('hod_logged')
+    hod_is_logged = request.session.get('logged') and request.session.get('user_type') == 'HOD'
     if hod_is_logged:
         semesters = _get_semesters(request)
         return render(request,'HOD/hod_home.html',{'sem':semesters})
     else:
-        request.session['logged'] = False
-        request.session['hod_logged'] = False
-        return redirect('hod_index')
+        return hod_logout(request)
 
 
 def course_settings(request,semester=None):
@@ -394,7 +393,7 @@ def _parse_course_mapping(request):
 def hod_login(request):
     request.session['username'] = request.POST.get('username')
     request.session['logged'] = True
-    request.session['hod_logged'] = True
+    request.session['user_type'] = 'HOD'
 
 
 def authenticate(username=None, password=None):

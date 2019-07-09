@@ -6,12 +6,16 @@ from datetime import date
 
 def student(request):
     username = request.session.get('username')
+    user_type = request.session.get('user_type')
+    if user_type != 'student':
+        return redirect('home')
     if username is not None:
         user_instance = StudentProfile.objects.get(reg_no=username)
         department = user_instance.department
         this_semester = (date.today().year - int(username[:4]))*2
         if date.today().month >= 7:
             this_semester += 1
+        print('this sem', this_semester)
         courses = Semester_wise_course.objects.get(department=department, semester=this_semester).courses.split('-')
         att_data_list = []                                         # using list of dictionaries to store attendance 
         for course_code in courses:

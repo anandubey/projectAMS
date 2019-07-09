@@ -18,13 +18,15 @@ def pass_recovery(request):
 
 
 def get_redirect_target(request):
-    if request.session.get('hod_logged'):
-        return 'hod_dashboard'
-    elif request.session.get('logged'):
-        username = request.session.get('username')
-        if len(username) == 10:
-            return 'student'
-        else:
-            return 'faculty'
-    else:
+    if not request.session.get('logged'):
         return None
+    user_type = request.session.get('user_type')
+    if user_type == 'HOD':
+        return 'hod_dashboard'
+    if user_type == 'data_entry_staff':
+        return 'des_dashboard'
+    if user_type == 'student':
+        return 'student'
+    if user_type == 'faculty':
+        return 'faculty'
+    return None

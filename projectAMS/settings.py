@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'student',
     'faculty',
     'HOD',
+    'data_entry_staff',
 ]
 
 MIDDLEWARE = [

@@ -9,25 +9,23 @@ from HOD.models import Course_allot
 def faculty(request):
     if not request.session.get('logged'):
         return redirect('home')
-    if request.session.get('hod_logged'):
-        return redirect('hod_index')
+    user_type = request.session.get('user_type')
+    if user_type != 'faculty':
+        return redirect('home')
     
     username = request.session.get('username')
-    if len(username) == 10:
-        return redirect('student')
-    else:
-        faculty = FacultyProfile.objects.get(faculty_id=username)
-        return render(request, 'faculty/faculty-home.html', {'user_instance': faculty})
+    faculty = FacultyProfile.objects.get(faculty_id=username)
+    return render(request, 'faculty/faculty-home.html', {'user_instance': faculty})
 
 
 def update_attend(request):
     if not request.session.get('logged'):
         return redirect('home')
-    if request.session.get('hod_logged'):
-        return redirect('hod_index')
+    user_type = request.session.get('user_type')
+    if user_type != 'faculty':
+        return redirect('home')
+
     username = request.session.get('username')
-    if len(username) == 10:
-        return redirect('student')
     faculty = FacultyProfile.objects.get(faculty_id=username)
 
     if request.method == "POST":
@@ -58,9 +56,10 @@ def update_attend(request):
 
 
 def view_attend(request):
-    if request.session.get('hod_logged'):
-        return redirect('hod_index')
     if not request.session.get('logged'):
+        return redirect('home')
+    user_type = request.session.get('user_type')
+    if user_type != 'faculty':
         return redirect('home')
 
     username = request.session.get('username')
