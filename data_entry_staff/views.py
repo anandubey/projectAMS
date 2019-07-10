@@ -20,6 +20,7 @@ def index(request):
         return HttpResponse("Data entry staff login page.")
     else:
         # Do something else
+        return
 
 
 def dashboard(request):

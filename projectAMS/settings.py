@@ -25,7 +25,7 @@ SECRET_KEY = 'eu!9#4@vdrvun8bs^h-b$#_-ttx!7wmw78d74_c(*$p+a(^nv5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.215', '103.82.78.120']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'student',
     'faculty',
     'HOD',
-    'data_entry_staff',
+    'data_entry_staff'
 ]
 
 MIDDLEWARE = [

@@ -1,20 +1,20 @@
 <!--
-    author : g33kyAnand
+    author : geekyAnand
+    © pyJaC
 -->
-
 
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width-device-width, initial-scale = 1, shrink-to-fit=no">
     <title> Attendance Management System </title>
     <link rel="stylesheet" type="text/css" href="{% static 'authentication/css/style.css' %}">
     <link rel="favicon" href="{% static 'authentication/img/nitn_favicon.png' %}" type="image/png">
 </head>
 <body>
 <div class="container">
+    <div class="user_card">
     <a target="_blank" href="https://nitnagaland.ac.in/">
         <img src="{% static 'authentication/img/nitn_logo.png' %}" alt="National Institute Of Technology Nagaland">
     </a>
@@ -36,7 +36,8 @@
         </div>
     </form>
     <div class="hod_button_div">
-       <a href="{% url 'hod_index' %}"><button type="submit" class="hod_button btn draw-border">OR LOGIN AS H.O.D. </button>       </a>
+       <a href="{% url 'hod_index' %}"><button type="submit" class="hod_button btn draw-border">OR LOGIN AS H.O.D. </button></a>
+    </div>
     </div>
 </div>
 </body>

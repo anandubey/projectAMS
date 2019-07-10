@@ -12,11 +12,14 @@
 </head>
 <body>
 	<div class="ams-faculty_navbar">
+		<div>
 		<div class="ams-navbar_logo">
-			<img src="{% static 'faculty/img/nitn_logo.png' %}">
-			<span> NITN-Attendance Management System</span>
+			<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
+				<img src="{% static 'student/img/nitn_logo.png' %}">
+			</a>
 		</div>
-
+		<h1> NIT Nagaland - Attendance Management System  </h1>
+		</div>
 		<div class="ams-navbar_links">
 			<ul>
 				<a href="{% url 'update_attend' %}"><li>UPDATE ATTENDANCE</li></a>
