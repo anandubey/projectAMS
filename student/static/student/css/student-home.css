@@ -172,7 +172,7 @@ body {
 
 .ams-attendance_table > h1 {
     font-size: 1.8rem;
-    font-family: 
+   
 }
 
 
@@ -328,8 +328,8 @@ body {
 
 
 
-/* for mobile */
-@media only screen and (max-width:980px) {
+
+@media only screen and (max-width:1145px) {
     .site_content{
         font: 1.2rem;
     }
@@ -365,7 +365,8 @@ body {
     
     
     .student-logout {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        font-weight: 700;
         margin-right: 0;
     }
     
@@ -435,19 +436,19 @@ body {
 /* styling table */
 
     .ams-attendance_table > h1 {
-        font-size: 3.0rem;
+        font-size: 2.6rem;
     }
     .ams-table {
         width: 100%;
         max-width: 940px;
         min-width: 940px;
-        margin: 3rem auto 3rem;
+        margin: 2.6rem auto 2.6rem;
         border-radius: 0.4rem;
     }
     
     .ams-table__value {
         display: block;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .ams-table__cell {
@@ -459,7 +460,297 @@ body {
     }
     .ams-table-header > th{
         padding: 16px;
-        font-size: 2.1rem;
+        font-size: 1.8rem;
     }
     
 }
+
+
+
+@media only screen and (max-width:955px) {
+    
+    #rightcolumn {
+        margin-top: 100px;
+    }
+    
+    .student-logout {
+        font-weight: 700;
+    }
+    .ams-details_wrapper {
+        width: 55%;
+        max-width: 720px;
+        min-width: 720px;
+    }
+
+
+    #header_div {
+        font-size: 1.2rem;
+    }
+    #header_div > p {
+        margin-top: 8px;
+        line-height: 24px;
+    }
+
+
+   
+    #card_body {
+        height: 236px;
+        font-size: 1.2rem;
+    }
+    .id_card_avatar {
+        width: 186px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+
+
+
+/* styling table */
+
+    .ams-attendance_table > h1 {
+        font-size: 2.6rem;
+    }
+    .ams-table {
+        width: 100%;
+        max-width: 760px;
+        min-width: 760px;
+        margin: 2rem auto 2rem;
+        border-radius: 0.4rem;
+    }
+    
+    .ams-table__value {
+        display: block;
+        font-size: 1.2rem;
+    }
+
+    .ams-table__cell {
+        padding: 1.2rem;
+    }
+    
+    .ams-table-header {
+        text-align: center;
+    }
+    .ams-table-header > th{
+        padding: 16px;
+        font-size: 1.5rem;
+    }
+    
+}
+
+
+@media only screen and (max-width:755px ) {
+    .site_content{
+        font: 1rem;
+    }
+
+    .ams-navbar {
+        min-width: 600px;
+        height: 60px;
+        line-height: 60px;
+    }
+    
+    .ams-logo {
+        
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .student-logout {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+    
+    #leftcolumn{
+        min-width: 600px;
+    }
+    #rightcolumn{
+        min-width: 600px;
+    }
+    
+   
+    .ams-details_wrapper {
+        width: 45%;
+        max-width: 590px;
+        min-width: 590px;
+    }
+
+/* styling the id card */
+
+    
+    #card_head {
+        height: 35%;
+    }
+
+    .id_card_logo {
+        height: 75px;
+        margin-top: 5px;
+    }
+
+    #header_div {
+        font-size: 1rem;
+    }
+
+    #header_div > p {
+        margin-top: 6px;
+        line-height: 20px;
+    }
+
+    #card_body {
+        height: 200px;
+        font-size: 1rem;
+    }
+    .id_card_avatar {
+        width: 146px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+    
+/* styling table */
+
+.ams-attendance_table > h1 {
+    font-size: 2.0rem;
+}
+.ams-table {
+    width: 100%;
+    max-width: 600px;
+    min-width: 600px;
+    margin: 2rem auto 2rem;
+    border-radius: 0.4rem;
+}
+
+.ams-table__value {
+    display: block;
+    font-size: 1rem;
+}
+
+.ams-table__cell {
+    padding: 1rem;
+}
+
+.ams-table-header {
+    text-align: center;
+}
+.ams-table-header > th{
+    padding: 16px;
+    font-size: 1.2rem;
+}
+}
+
+
+
+
+
+/* for mobile */
+
+
+
+@media only screen and (max-width:500px) {
+    
+    .site_content{
+        width: 100%;
+    }
+
+    .ams-navbar {
+        width: 100%;
+        position: relative;
+        height: 100px;
+        line-height: 100px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+   
+    
+    .ams-logo {
+        padding-top: 2px;
+        padding-left: 3px;
+        width: 90px;
+        height: 90px;
+    }
+    
+    
+    .student-logout {
+        font-size: 1.6rem;
+    }
+    
+    #rightcolumn {
+        margin-top: 80px;
+    }
+   
+    .ams-details_wrapper {
+        width: 98%;
+        min-width: 400px;
+        max-width: 588px;
+    }
+
+/* styling the id card */
+
+    
+    #card_head {
+        height: 35%;
+    }
+
+    .id_card_logo {
+        height: 70px;
+        margin-top: 10px;
+    }
+
+    #header_div {
+        font-size: 1rem;
+    }
+
+    #header_div > p {
+        margin-top: 10px;
+        line-height: 20px;
+    }
+
+    #card_body {
+        height: 200px;
+        font-size: 1rem;
+    }
+    .id_card_avatar {
+        width: 136px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+
+
+
+/* styling table */
+
+    .ams-attendance_table > h1 {
+        font-size: 2rem;
+    }
+    .ams-table {
+        width: 100%;
+        max-width: 560px;
+        min-width: 400px;
+        margin: 2.6rem auto 2.6rem;
+        border-radius: 0.4rem;
+    }
+    
+    .ams-table__value {
+        display: block;
+        font-size: 1rem;
+    }
+
+    .ams-table__cell {
+        padding: 0.8rem;
+    }
+    
+    .ams-table-header {
+        text-align: center;
+    }
+    .ams-table-header > th{
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+    
+}
+
+
+
+

@@ -1,107 +1,119 @@
 <!--
-	author: g33kyAnand
+	author: geekyAnand
+	© pyJaC
 -->
+
 
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>NITN-AMS | Faculty Home</title>
     <link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
 	
 </head>
 <body>
-	<div class="ams-faculty_navbar">
-		<div class="ams-navbar_logo">
-			<img src="{% static 'faculty/img/nitn_logo.png' %}">
-			<span> NITN-Attendance Management System</span>
-		</div>
-
-		<div class="ams-navbar_links">
-			<ul>
-				<a href="{% url 'faculty' %}"><li>DASHBOARD</li></a>
-				<a href="{% url 'update_attend' %}"><li>UPDATE ATTENDANCE</li></a>
-				<a href="{% url 'faculty_view_attend' %}"><li>VIEW ATTENDANCE</li></a>
-				<a href="{% url 'faculty_logout' %}"><li> LOGOUT </li></a>
-			</ul>
-		</div>
-	</div>
-
-	<div class="site-container">
-		<div class="option-picker">	
-			<form method="POST" name="select_option_form" >
-				{% csrf_token %}
+	<div class="main_body">
+		<div class="ams-faculty_navbar faculty_view_attend_nav">
+			<div>
+			<div class="ams-navbar_logo ">
+				<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
+					<img src="{% static 'student/img/nitn_logo.png' %}">
+				</a>
+			</div>
+			<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
+			<span></span>
+			</div>
+			<div class="ams-navbar_links_with_db">
+				<a href="{% url 'faculty' %}">DASHBOARD</a>
+				<a class="link_1" href="{% url 'faculty_view_attend' %}">VIEW ATTENDANCE</a>
+				<a class="link_2" href="{% url 'update_attend' %}">UPDATE ATTENDANCE</a>
+				<a class="link_3" href="{% url 'faculty_logout' %}"> LOGOUT </a>
 				
-				<select name="select_batch" required>
-					<option value="">Select Batch</option>
-					{% for batch in filters.batches %}
-					<option value="{{ batch.year }}" {% if batch.checked %} selected {% endif %}>{{ batch.year}}-{{ batch.year|add:"4" }}</option>
-					{% endfor %}
-				</select>
-				<select name="select_department" required>
-					<option value="">Select Department</option>
-					{% for dep in filters.departments %}
-					<option value="{{ dep.department }}" {% if dep.checked %} selected {% endif %}>{{ dep.department }}</option>
-					{% endfor %}
-				</select>
-				<select name="select_course_code" id="select_course_code" required>
-					<option value="">Select Course Code </option>
-					{% for course in filters.courses %}
-					<option value="{{ course.course_code }}" {% if course.checked %} selected {% endif %}>{{ course.course_code }}</option>
-					{% endfor %}
-				</select>		
-			<input type="date" name="att_date" id="att_date" value="{{ filters.selected_date }}" max="{% now 'Y-m-d' %}" required>
-			<button type="submit" name="att_filter_btn" id="submit_option_selector">SUBMIT</button>
-		</form>
+			</div>
+		</div>
 
-		</div>	
-		{% if user_set %}
-		<div class="attendance-editor">
-			<table class="attend-table">
+		<div class="site-container">
+			<div class="option-picker up_att_option-picker">	
+				<form method="POST" name="select_option_form" >
+					{% csrf_token %}
+					<div id="drop_down">
+						<select name="select_batch" required >
+							<option value="" disabled selected>Select Batch</option>
+							{% for batch in filters.batches %}
+							<option value="{{ batch.year }}" {% if batch.checked %} selected {% endif %}>{{ batch.year}}-{{ batch.year|add:"4" }}</option>
+							{% endfor %}
+						</select>
+					
+						<select name="select_department" required>
+							<option value="">Select Department</option>
+							{% for dep in filters.departments %}
+							<option value="{{ dep.department }}" {% if dep.checked %} selected {% endif %}>{{ dep.department }}</option>
+							{% endfor %}
+						</select>
+					
+						<select name="select_course_code" id="select_course_code" required>
+							<option value="">Select Course Code </option>
+							{% for course in filters.courses %}
+							<option value="{{ course.course_code }}" {% if course.checked %} selected {% endif %}>{{ course.course_code }}</option>
+							{% endfor %}
+						</select>
+					</div>	
+					<div id="date_and_btn">
+						<input type="date" name="att_date" id="att_date" value="{{ filters.selected_date }}" max="{% now 'Y-m-d' %}" required>
+					
+						<button type="submit" name="att_filter_btn" id="submit_option_selector">SUBMIT</button>
+					</div>
+				</form>
+			</div>	
+			{% if user_set %}
+			<div class="attendance-editor">
 			<form method="POST" id="attendance_form">
 				{% csrf_token %}
 				<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
 				<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
-			
-				<thead>
-					<th>Registration No</th>
-					<th>Name</th>
-					<th>Attendance</th>
-				</thead>
-				<tbody>
-					
+				<div class="ams-table">
+					<table class="ams-table__table">
+						<tr class="ams-table-header ">
+							<th> Registration No. </th>
+							<th> Name</th>
+							<th> Attendance</th>
+						</tr>
+
 						{% for student in user_set %}
-						<tr>
-							<td>{{ student.reg_no }}</td>
-							<td>{{ student.name }}</td>
-							<td>
-								<label class="label_present">
-									<input type="radio" value="P" name="reg_{{ student.reg_no }}" required/><span>P</span>
-								</label>
-    							<label class="label_absent">
-									<input type="radio" value="A" name="reg_{{ student.reg_no }}" required/><span>A</span>
-								</label>			
+						<tr class="ams-table__row ams-table-header">
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.reg_no }}</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.name }}</span></td>
+							<td class="ams-table__cell">
+								<span class="ams-table__value">
+									<label class="label_present">
+										<input type="radio" value="P" name="reg_{{ student.reg_no }}" required/><span>P</span>
+									</label>
+									<label class="label_absent">
+										<input type="radio" value="A" name="reg_{{ student.reg_no }}" required/><span>A</span>
+									</label>
+								</span>
 							</td>
 						</tr>
 						{% endfor %}
-					
-				</tbody>
-			
-			<button type="submit" name="att_data_submit_btn" id="att_data_submit_btn"  form="attendance_form">SUBMIT</button>
+					</table>
+				</div>
+				<button type="submit" name="att_data_submit_btn" id="submit_option_selector"  form="attendance_form">SUBMIT</button>
 			</form>
-		</table>
-		</div>
-		{% else %}
-		<div>
-			{% if messages %}
-				{% for message in messages %}
-					<h3>{{ message }}</h3>
-				{% endfor %}
+			</div>
+			{% else %}
+			<div>
+				{% if messages %}
+					{% for message in messages %}
+						<h3>{{ message }}</h3>
+					{% endfor %}
+				{% endif %}
+			</div>
 			{% endif %}
-		</div>
-		{% endif %}
-		
+			
 
+		</div>
 	</div>
 
 <script src="{% static 'faculty/js/faculty.js' %}"></script>

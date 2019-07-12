@@ -1,5 +1,6 @@
 <!--
-	author: g33kyAnand
+	author: geekyAnand
+	© pyJaC
 -->
 
 {% load mathfilters %}
@@ -7,88 +8,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>NITN-AMS | Faculty Home</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NITN-AMS | Faculty | Viewing Attendance</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
 	
 </head>
 <body>
-	<div class="ams-faculty_navbar">
-		<div class="ams-navbar_logo">
-			<img src="{% static 'faculty/img/nitn_logo.png' %}">
-			<span> NITN-Attendance Management System</span>
-		</div>
-
-		<div class="ams-navbar_links">
-			<ul>
-				<a href="{% url 'faculty' %}"><li>DASHBOARD</li></a>
-				<a href="{% url 'update_attend' %}"><li>UPDATE ATTENDANCE</li></a>
-				<a href="{% url 'faculty_view_attend' %}"><li>VIEW ATTENDANCE</li></a>
-				<a href="{% url 'faculty_logout' %}"><li> LOGOUT </li></a>
-			</ul>
-		</div>
-	</div>
-
-	<div class="site-container">
-		<div class="option-picker">	
-			<form method="POST" name="select_option_form" >
-				{% csrf_token %}
+	<div class="main_body">
+		<div class="ams-faculty_navbar faculty_view_attend_nav">
+			<div>
+			<div class="ams-navbar_logo ">
+				<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
+					<img src="{% static 'student/img/nitn_logo.png' %}">
+				</a>
+			</div>
+			<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
+			<span></span>
+			</div>
+			<div class="ams-navbar_links_with_db">
+				<a href="{% url 'faculty' %}">DASHBOARD</a>
+				<a class="link_1" href="{% url 'faculty_view_attend' %}">VIEW ATTENDANCE</a>
+				<a class="link_2" href="{% url 'update_attend' %}">UPDATE ATTENDANCE</a>
+				<a class="link_3" href="{% url 'faculty_logout' %}"> LOGOUT </a>
 				
-				<select name="select_year" required onchange="this.form.submit()">
-					<option value="" disabled selected>Select Year</option>
-					{% for year in filters.years %}
-					<option value="{{ year.value }}" {% if year.checked %} selected {% endif %}>{{ year.value }}</option>
-					{% endfor %}
-				</select>
-				<select name="select_semester" required onchange="this.form.submit()">
-					<option value="" disabled selected>Select Semester</option>
-					{% for semester in filters.semesters %}
-					<option value="{{ semester.value }}" {% if semester.checked %} selected {% endif %}>Semester {{ semester.value }}</option>
-					{% endfor %}
-				</select>
-				<select name="select_course_code" id="select_course_code" required onchange="this.form.submit()">
-					<option value="">Select Course Code</option>
-					{% for course in filters.courses %}
-					<option value="{{ course.course_code }}" {% if course.checked %} selected {% endif %}>{{ course.course_code }}</option>
-					{% endfor %}
-				</select>
-		</form>
-
+			</div>
 		</div>
-	
-		{% if attendance.total %}
-		<div class="attendance-editor">
-			<table class="attend-table">
-			<form method="POST" id="attendance_form">
-				{% csrf_token %}
-				<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
-				<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
-			
-				<thead>
-					<th>Registration No</th>
-					<th>Classes Taken</th>
-					<th>Classes Present</th>
-					<th>Percentage</th>
-				</thead>
-				<tbody>
+		<div class="site-container">
+			<div class="option-picker">	
+				<form method="POST" name="select_option_form" >
+					{% csrf_token %}
 					
+					<select name="select_year" required onchange="this.form.submit()">
+						<option value="" disabled selected>Select Year</option>
+						{% for year in filters.years %}
+						<option value="{{ year.value }}" {% if year.checked %} selected {% endif %}>{{ year.value }}</option>
+						{% endfor %}
+					</select>
+					<select name="select_semester" required onchange="this.form.submit()">
+						<option value="" disabled selected>Select Semester</option>
+						{% for semester in filters.semesters %}
+						<option value="{{ semester.value }}" {% if semester.checked %} selected {% endif %}>Semester {{ semester.value }}</option>
+						{% endfor %}￼ ￼
+					</select>
+					<select name="select_course_code" id="select_course_code" required onchange="this.form.submit()">
+						<option value="" disabled selected>Select Course Code</option>
+						{% for course in filters.courses %}
+						<option value="{{ course.course_code }}" {% if course.checked %} selected {% endif %}>{{ course.course_code }}</option>
+						{% endfor %}
+					</select>
+				</form>
+			</div>
+		
+			{% if attendance.total %}
+			<div class="ams-attendance_table">
+				<div class="ams-table">
+					<table class="ams-table__table">
+						<tr class="ams-table-header ">
+							<th> Registration No. </th>
+							<th> Classes Scheduled</th>
+							<th> Classes Attended</th>
+							<th> Attendance %</th>
+						</tr>
+
 						{% for student in attendance.students %}
-						<tr>
-							<td>{{ student.reg_no }}</td>
-							<td>{{ attendance.total }}</td>
-							<td>{{ student.present }}</td>
-							<td> {{ student.present|div:attendance.total|mul:100 }} </td>
+						<tr class="ams-table__row ams-table-header">
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.reg_no }}</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">{{ attendance.total }}</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.present }}</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.present|div:attendance.total|mul:100 }}</span></td>
 						</tr>
 						{% endfor %}
-					
-				</tbody>
-			</form>
-		</table>
+					</table>
+				</div>
+			</div>
+			{% else %}
+			<h1>Select a valid combination from the above drop-down to view the attendance.</h1>
+			{% endif %}
 		</div>
-		{% else %}
-		<div>
-			Select a valid course from the drop down to see the attendance.
-		</div>
-		{% endif %}
 	</div>
 
 <script src="{% static 'faculty/js/faculty.js' %}"></script>
