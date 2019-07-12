@@ -27,12 +27,13 @@ class Semester_wise_course(models.Model):
     department = models.CharField(max_length=3, null=False, choices=dep_choices, default='CSE')
     semester = models.IntegerField(null=False, choices=[(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)])
     courses = models.CharField(max_length=53, null=False, default='')
+    year = models.CharField(default=this_year, max_length=4, null=False)
 
-    # courses_max_length is 53 = 9*sub_code(len = 5) + 8*separator(-)
+    # courses_max_length is 53 = 9*sub_code(len = 5) + 8*separator(-)  --Assumed 6 sub and 3 prac in general, may change
     # courses stores course codes for given semester and department in format <CODE-CODE-...>
 
     def __str__(self):
-        return self.department + ' | ' + str(self.semester) + ' | ' + self.courses
+        return self.department + ' | ' + self.year + ' | ' + str(self.semester) + ' | ' + self.courses
 
 
 class Course_allot(models.Model):

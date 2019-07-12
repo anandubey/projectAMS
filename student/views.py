@@ -16,7 +16,8 @@ def student(request):
         if date.today().month >= 7:
             this_semester += 1
         print('this sem', this_semester)
-        courses = Semester_wise_course.objects.get(department=department, semester=this_semester).courses.split('-')
+        this_year = str(date.today().year)
+        courses = Semester_wise_course.objects.get(department=department, semester=this_semester, year=this_year).courses.split('-')
         att_data_list = []                                         # using list of dictionaries to store attendance 
         for course_code in courses:
             total = attendance.objects.filter(reg_no=user_instance, course_code=course_code).count()

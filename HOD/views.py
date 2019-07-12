@@ -28,15 +28,17 @@ def index(request):
 
 
 def dashboard(request):
-    hod_is_logged = request.session.get('logged') and request.session.get('user_type') == 'HOD'
-    if hod_is_logged:
+    if _hod_is_logged(request):
         semesters = _get_semesters(request)
         return render(request,'HOD/hod_home.html',{'sem':semesters})
     else:
-        return hod_logout(request)
+        return redirect('home')
 
 
 def course_settings(request,semester=None):
+    if not _hod_is_logged(request):
+        return redirect('home')
+    
     if request.method == 'GET':
         if semester is None:
             return redirect('hod_dashboard')
@@ -69,6 +71,9 @@ def course_settings(request,semester=None):
 
 
 def view_courses(request):
+    if not _hod_is_logged(request):
+        return redirect('home')
+    
     semesters = _get_semesters(request)
     username = request.session.get('username')
     department = Hod_credential.objects.get(hod_id=username).department
@@ -93,6 +98,9 @@ def view_courses(request):
 
 
 def attendance_modifier(request):
+    if not _hod_is_logged(request):
+        return redirect('home')
+    
     semesters = _get_semesters(request)
     if request.method == 'POST':
         if 'att_data_submit_btn' in request.POST:
@@ -135,9 +143,8 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
         <br>
         <input type="button" onclick="window.close()" value="Close this window">
     """
-    logged = request.session.get('logged')
-    hod_logged = request.session.get('hod_logged')
-    if not (logged and hod_logged):
+
+    if not _hod_is_logged(request):
         return HttpResponse(notLoggedAccessPageContent)
 
     template_data = dict()
@@ -156,7 +163,8 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
             if student.department != hod.department:
                 template_data['invalid_reg'] = True
             else:
-                courses = Semester_wise_course.objects.get(department=student.department, semester=sem).courses.split('-')
+                course_year = str(int(reg_no[:4])+ (sem//2))
+                courses = Semester_wise_course.objects.get(department=student.department, semester=sem, year=course_year).courses.split('-')
                 att_data_list = []                                         # using list of dictionaries to store attendance 
                 for course_code in courses:
                     total = attendance.objects.filter(reg_no=student, course_code=course_code).count()
@@ -202,6 +210,7 @@ def attendance_viewer(request):
         semester_filter = _get_semesters_filter(request, selected=None)
         template_data = {'sem': semesters, 'batch_filter':batch_filter, 'semester_filter':semester_filter, 'freshpage':True}
         return render(request, 'HOD/hod_attend_view.html', template_data)
+
 
 def allot_courses(request):
     if request.method == 'POST':
@@ -281,8 +290,9 @@ def _get_batches_filter(selected=None):
             batches[batch] = True
     return batches
 
-
+# Below function seems to be useless
 def _get_course_filter(request, selected=None, semester=None):
+    print("TETTETETETETETETTETETESJDGFSJDFGSDFHDSGK")
     current_hod = request.session.get('username')
     department = Hod_credential.objects.get(hod_id=current_hod).department
     if semester is None:
@@ -308,7 +318,8 @@ def _get_attendance_data_for_batch(department, batch=None, semester=None):
         return dict()
     else:
         try:
-            courses = Semester_wise_course.objects.get(department=department, semester=int(semester)).courses.split('-')
+            course_year = str(int(batch) + int(semester) // 2)
+            courses = Semester_wise_course.objects.get(department=department, semester=int(semester), year=course_year).courses.split('-')
             students = list(StudentProfile.objects.filter(reg_no__startswith=batch).values_list('reg_no', flat=True).order_by('reg_no'))
         except Semester_wise_course.DoesNotExist:
             return dict()
@@ -355,7 +366,8 @@ def _get_attendance_data_for_student(student_profile):
         data['max_date'] = date(date.today().year, 12, 31).strftime('%Y-%m-%d')
     
     att_data_list = list()
-    courses = Semester_wise_course.objects.get(department=student_profile.department, semester=this_semester).courses.split('-')
+    course_year = str(date.today().year)
+    courses = Semester_wise_course.objects.get(department=student_profile.department, semester=this_semester, year=course_year).courses.split('-')
     
     for course_code in courses:
         total = attendance.objects.filter(reg_no=student_profile, course_code=course_code).count()
@@ -408,6 +420,16 @@ def authenticate(username=None, password=None):
             return True
         else:
             return False
+    else:
+        return False
+
+def _hod_is_logged(request):
+    if request.session.get('logged'):
+        user_type = request.session.get('user_type')
+        if user_type != 'HOD':
+            return False
+        else:
+            return True
     else:
         return False
 

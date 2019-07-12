@@ -149,7 +149,6 @@ def _get_historical_course_filter(username=None, selected_year=None, selected_se
             semesters = list()
 
             for course in allotted_courses:
-
                 year = course.get('year')
                 if year == selected_year:
                     this_year = {'value':year, 'checked':True}
@@ -182,7 +181,6 @@ def _get_historical_course_filter(username=None, selected_year=None, selected_se
 
 
 def _get_attendance_data_for_course(course_code):
-
     try:
         students = list(attendance.objects.filter(course_code=course_code).values_list('reg_no', flat=True).distinct().order_by('reg_no'))
     except attendance.DoesNotExist:
@@ -191,15 +189,14 @@ def _get_attendance_data_for_course(course_code):
     student_attendance_list = []
     max_classes = 0
     for reg_no in students:
-
         total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).count()
         present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').count()
         if total != 0:
             nocourse = False
             if total > max_classes:
                 max_classes = total
-    
         student_attendance_list.append({'reg_no':reg_no, 'present':present})
+
     attendance_data['total'] = max_classes
     attendance_data['students'] = student_attendance_list
 
