@@ -68,11 +68,11 @@
 				</form>
 			</div>	
 			{% if user_set %}
-			<div class="attendance-editor">
 			<form method="POST" id="attendance_form">
 				{% csrf_token %}
 				<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
 				<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
+				<div class="attendance-editor"></div>
 				<div class="ams-table">
 					<table class="ams-table__table">
 						<tr class="ams-table-header ">
@@ -103,13 +103,13 @@
 			</form>
 			</div>
 			{% else %}
-			<div>
 				{% if messages %}
 					{% for message in messages %}
-						<h3>{{ message }}</h3>
+						<h1>{{ message }}</h1>
 					{% endfor %}
+				{% else %}
+				<h1>Select a valid combination from the above drop-downs to edit the attendance.</h1>
 				{% endif %}
-			</div>
 			{% endif %}
 			
 
