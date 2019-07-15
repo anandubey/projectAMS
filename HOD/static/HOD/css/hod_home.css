@@ -1,6 +1,5 @@
 html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
-    min-width: 105px;
     text-align: center;
 
 }
@@ -11,29 +10,44 @@ html, body {
     padding: 0;
     
 }
-
+.hod_main_body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+}
+.hod_view_att_main_body{
+  min-width: 1030px;
+}
 
 .ams-hod_navbar{
-    width: 100%;
-    min-width: 1130px;
-    height: 60px;
-    line-height: 60px;
-    background: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
-.ams-navbar_logo img{
-	position: absolute;
-	padding-top: 5px;	
-	left: 10px;
-	width: 50px;
-	height: 50px;
+.ams-navbar_logo > a > img{
+	float: left;
+    padding-top: 2px;
+    padding-left: 3px;
+    width: 44px;
+    height: 44px;
+}
+.ams-hod_navbar > div{
+    width: auto;
 }
 
-.ams-navbar_logo > span{
+.ams-hod_navbar > div > h1 {
     float: left;
-    margin-left: 70px;
+    width: auto;
+    font-size: 1.6rem;
+    color: #2c5505;
+    margin-left: 10px;
 }
 .ams-navbar_links{
   width: fit-content;
@@ -43,9 +57,10 @@ html, body {
 
 .dropbtn {
   background-color: #fff;
-  padding: 16px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 1rem;
   width: auto;
+  height: 48px;
   border: none;
   cursor: pointer;
 }
@@ -57,10 +72,10 @@ html, body {
 
 .dropdown-content {
   display: none;
-  width: inherit;
+  width: 100%;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 168px;
+  min-width: 158px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -84,57 +99,371 @@ html, body {
   color: white;
 }
 
-
-
-.hod_course_allot_table{
+.site_container{
   margin: 0 auto;
-  top: 5%;
-  width: 600px;
-  
- 
-}
-
-/*
-.attend-table{
-  border-collapse: collapse;
   width: 100%;
+  height: 100%;
+  min-height: 500px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
-th{
-  vertical-align: middle;
-  text-align: center;
-  padding: 10px;
-  height: 50px;
+.site_container  h1{
+  margin: 100px 2%;
+  color: gray;
+  opacity: 0.3;
+  font-size: 5rem;
 }
 
-tr{
-  padding: 10px;
-  height: 40px;
-}
-.attend-table, th, td{
-  border: 1px solid saddlebrown;
-  vertical-align: middle;
-}
-*/
 
-.option_picker{
-  display: inline-block;
-  vertical-align: middle;
+.option-picker{
+	width: 100%;
+    height: 70px;
+    vertical-align: middle;
+    margin-bottom: 40px;
 }
 
- select{
-	padding: 4px 10px;
-	background-color: #2C5505;
-	margin-right: 30px;
-	color: white;
-	font-size: 16px;
-	display: inline-block;
+
+
+/* styling select tag */
+
+.option-picker > form{
+  margin: 20px 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
+
+select{
+padding: 4px 10px;
+background-color: #2C5505;
+  margin-right: 30px;
+  margin-left: 30px;
+color: #fff;
+font-size: 16px;
+display: inline-block;
+}
+
 option{
-	padding: 5px 10px;
+padding: 5px 10px;
 }
 option:hover{
-	opacity: 0.6;
+opacity: 0.6;
+}
+
+
+
+#hod_inp_regno{
+  width: 200px;
+	opacity: 0.8;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-right: 15px;
+    padding-left: 10px;
+}
+
+#submit_option_selector{
+	background-color: #fff;
+	color: #2C5505;
+	border: 2px solid #2C5505;
+  font-size: 1.2rem;
+  margin-left: 15px;
+	display: inline-block;
+	padding: 4px 10px;
+	vertical-align: middle;
+
+}
+
+#submit_option_selector:hover{
+	background-color: #2C5505;
+	color: #fff;
+	cursor: pointer;
+}
+
+
+/* styling table */
+
+
+:root {
+  --white: white;
+  --grey-1: #343a40;
+  --grey-2: #495057;
+  --grey-3: #868e96;
+  --grey-4: #adb5bd;
+  --grey-5: #ced4da;
+  --grey-6: #dee2e6;
+  --grey-7: #e9ecef;
+  --grey-8: #f1f3f5;
+  --grey-9: #f8f9fa;
+  --trans-black: rgba(33, 37, 42, 0.9);
+}
+
+.ams-attendance_table{
+  height: 100%;
+  
+}
+
+.ams-table {
+  width: 60%;
+  min-width: 1030px;
+  max-width: 75%;
+  margin: 3rem auto 3rem;
+  border-radius: 0.4rem;
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1),
+      0px 5px 12px rgba(0, 0, 0, 0.07);
+}
+.ams-hod_edit_table{
+  width:70%;
+}
+@media screen and (max-width: 800px) {
+  .ams-table {
+      margin: 0 auto;
+  }
+}
+.ams-table__table {
+  width: 100%;
+  border-spacing: 0;
+  color: var(--grey-3);
+}
+.ams-table__value {
+  display: block;
+  font-size: 18px;
+}
+
+.ams-table__row {
+  background: var(--grey-7);
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.ams-table__row:hover,
+.ams-table__row:focus {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+  box-shadow: 0px 15px 28px rgba(0, 0, 0, 0.1),
+      0px 5px 12px rgba(0, 0, 0, 0.08);
+  transition: all 300ms ease;
+}
+.ams-table__row:not(:last-of-type) .ams-table__cell {
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.08);
+}
+.ams-table__row:first-of-type {
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) {
+  color: var(--grey-2);
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) .ams-table__cell:first-of-type {
+  background: var(--grey-4);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) .ams-table__cell:first-of-type {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(4) {
+  color: var(--grey-2);
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(4) .ams-table__cell:first-of-type {
+  background: var(--grey-4);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) .ams-table__cell:first-of-type {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(6) {
+  color: var(--grey-2);
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(6) .ams-table__cell:first-of-type {
+  background: var(--grey-4);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) .ams-table__cell:first-of-type {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(8) {
+  color: var(--grey-2);
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(8) .ams-table__cell:first-of-type {
+  background: var(--grey-4);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) .ams-table__cell:first-of-type {
+  background: var(--grey-6);
+  color: var(--grey-2);
+}
+
+.ams-table__row:nth-of-type(10) {
+  color: var(--grey-2);
+  background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(10) .ams-table__cell:first-of-type {
+  background: var(--grey-4);
+  color: var(--grey-2);
+}
+.ams-table__cell {
+  padding: 1rem;
+}
+
+.ams-table-header {
+  text-align: center;
+  min-width: 545px;
+  width: 100%;
+}
+.ams-table-header > th{
+  padding: 14px;
+  font-size: 1.3rem;
+}
+.ams-table-header-data {
+  border: 4px;
+}
+
+
+
+
+
+
+.bg-modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content{
+  width: 520px;
+  height: 565px;
+  background-color: white;
+  border-radius: 4px;
+  position: relative;
+}
+.close{
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 30px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  
+}
+iframe{
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+.individual_view_table{
+  width: 98%;
+  min-width: 450px;
+}
+ h2{
+  font-size: 1.2rem;
+  color: #2C5505;
+  margin-bottom: 20px;
+  margin-top: 8px; 
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:1390px){
+  .ams-hod_navbar > div > h1 {
+    display: none;  
+  }
+  .ams-hod_navbar > div > span::after{
+    content:'NIT Nagaland - AMS';
+    float: left;
+    width: auto;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2c5505;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width:1055px){
+  .ams-hod_navbar > div > span::after{
+    content:'NIT Nagaland-AMS';
+  }
+}
+
+@media only screen and (max-width:1040px){
+  .hod_main_body{
+    font-size: 1.2rem;
+  }
+  .ams-hod_navbar{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 140px;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .ams-hod_navbar > div{
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .ams-navbar_links{
+    float: none;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .dropdown{
+    width: 25%;
+  }
+  .dropdown-content{
+    font-size: 1.05rem;
+    min-width: 100%;
+  }
+  .dropbtn{
+    font-size: 1.02rem;
+    width: 100%;
+    height: 100%;
+  }
+  .ams-hod_navbar > div > .ams-navbar_logo > a > img {
+    height: 65px;
+    width: 65px;
+  }
+  .ams-hod_navbar > div > span{
+    display: none;
+  }
+  .ams-hod_navbar > div > h1 {
+    display: none;
+  }
 }

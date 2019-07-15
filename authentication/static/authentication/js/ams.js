@@ -1,25 +1,33 @@
-function toggleDisplayFaculty() {
-    var faculty = document.getElementById("faculty");
-    var student = document.getElementById("student");
-    if (faculty.style.display === "none") {
-        faculty.style.display = "block";
-        student.style.display = "none";
-    }
-    else {
-        faculty.style.display = "block";
-        student.style.display = "none";
-     }
+var classname_array = document.getElementsByClassName('ams-table__row');
+var model = document.getElementsByClassName('bg-modal')[0];
+var myFunction = function() {
+   model.style.display='flex';
+};
+
+for (var i = 0; i < classname_array.length; i++) {
+    classname_array[i].addEventListener('click', myFunction, false);
 }
 
-function toggleDisplayStudent() {
-    var student = document.getElementById("student");
-    var faculty = document.getElementById("faculty");
-    if (student.style.display === "none") {
-        student.style.display = "block";
-        faculty.style.display = "none";
-    }
-    else {
-        student.style.display = "block";
-        faculty.style.display = "none";
-    }
-}
+
+document.querySelector('.close').addEventListener('click', function(){
+    document.querySelector('.bg-modal').style.display='none';
+});
+
+
+
+
+
+function PopupCenter(url, w, h) {  
+              
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;  
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;  
+              
+    var left = ((width / 2) - (w / 2));  
+    var top = ((height / 2) - (h / 2));  
+    var newWindow = window.open(url,'_attview, ' + 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);  
+  
+    // Puts focus on the newWindow  
+    if (window.focus) {  
+        newWindow.focus();  
+    }  
+}  

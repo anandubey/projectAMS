@@ -1,34 +1,39 @@
-
+<!--
+	author: geekyAnand
+	© pyJaC
+-->
 
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		
-	<title>NITN-AMS | Faculty Home</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">
-
-	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>NITN-AMS | HOD View Attendance</title>
+  	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
 </head>
-<body>
-	<div class="ams-hod_navbar">
-		<div class="ams-navbar_logo">
-			<img src="{% static 'faculty/img/nitn_logo.png' %}">
-			<span> NITN-Attendance Management System</span>
-		</div>
 
-		<div class="ams-navbar_links">
-			<div class="dropdown">
-				<button class="dropbtn">ALLOT COURSES</button>
-				<div class="dropdown-content">
-					{% for semester in sem %}
-						<a href="{% url 'course_settings' semester %}">Semester {{ semester }}</a>
-					{% endfor %}
+<body>
+	<div class="hod_main_body hod_view_att_main_body">
+		<div class="ams-hod_navbar">
+			<div>
+				<div class="ams-navbar_logo ">
+					<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
+						<img src="{% static 'student/img/nitn_logo.png' %}">
+					</a>
 				</div>
+				<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
+				<span></span>
+			</div>
+			<div class="ams-navbar_links">
+				<div class="dropdown">
+					<button class="dropbtn">ALLOT COURSES</button>
+					<div class="dropdown-content">
+						{% for semester in sem %}
+							<a href="{% url 'course_settings' semester %}">Semester {{ semester }}</a>
+						{% endfor %}
+					</div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn">VIEW / MODIFY ATTENDANCE</button>
@@ -40,64 +45,69 @@
 				<div class="dropdown">
 					<a href="{% url 'view_courses' %}"><button class="dropbtn">VIEW ALLOTED COURSES</button></a>
 				</div>
-			  <div class="dropdown">
-				<a href="{% url 'hod_logout' %}"><button class="dropbtn">LOGOUT</button></a>
+				<div class="dropdown">
+					<a href="{% url 'hod_logout' %}"><button class="dropbtn">LOGOUT</button></a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="site-container">
-		<div class="option-picker">	
-			<form method="POST" name="select_option_form" >
-				{% csrf_token %}
-				
-				<select name="select_batch" required>
-					<option value="">Select Batch</option>
-					{% for year, checked in batch_filter.items %}
-					<option value="{{ year }}" {% if checked %} selected {% endif %}>{{ year }} - {{ year|add:"4" }}</option>
-					{% endfor %}
-				</select>
-				<select name="select_semester" required onchange="this.form.submit()">
-					<option value="">Select Semester</option>
-					{% if batch_filter %}
-					{% for semester, checked in semester_filter.items %}
-					<option value="{{ semester }}" {% if checked %} selected {% endif %}>Semester {{ semester }}</option>
-					{% endfor %}
-					{% endif %}
-				</select>
-		</form>
-
-		</div>	
-		{% if attendance %}
-		<div class="attendance-editor">
-			<table class="attend-table">
-				<thead>
-					<th>Registration No</th>
-					{% for course_code in attendance.courses %}
-					<th>{{ course_code }}</th>
-					{% endfor %}
-				</thead>
-				<tbody>
-						{% for student in attendance.students %}
-						<tr>
-							<td><a href="{% url 'hod_stu_att_view' selected_semester student.reg_no %}" target="_attview" onclick="window.open(this.href, '_attview', 'height=350, width=250'); return false">{{ student.reg_no }}</a></td>
-							{% for percentage in student.percent %}
-							<td>{{ percentage|floatformat:1 }}%</td>
+		<div class="site_container">
+			<div class="option-picker">	
+				<form method="POST" name="select_option_form" >
+					{% csrf_token %}
+					<select name="select_batch" required>
+						<option value="">Select Batch</option>
+						{% for year, checked in batch_filter.items %}
+						<option value="{{ year }}" {% if checked %} selected {% endif %}>{{ year }} - {{ year|add:"4" }}</option>
+						{% endfor %}
+					</select>
+					<select name="select_semester" required onchange="this.form.submit()">
+						<option value="">Select Semester</option>
+						{% if batch_filter %}
+						{% for semester, checked in semester_filter.items %}
+						<option value="{{ semester }}" {% if checked %} selected {% endif %}>Semester {{ semester }}</option>
+						{% endfor %}
+						{% endif %}
+					</select>
+				</form>
+			</div>	
+			{% if attendance %}
+			<div class="ams-attendance_table">
+				<div class="ams-table">
+					<table class="ams-table__table">
+						<tr class="ams-table-header ">
+							<th> Registration No. </th>
+							{% for course_code in attendance.courses %}
+							<th>{{ course_code }}</th>
 							{% endfor %}
 						</tr>
+
+						{% for student in attendance.students %}
+						<tr class="ams-table__row ams-table-header">
+							<td class="ams-table__cell"><span class="ams-table__value"><a href="{% url 'hod_stu_att_view' selected_semester student.reg_no %}" target="_attview" onclick="PopupCenter(this.href, '580', '540');">{{ student.reg_no }}</a></span></td>
+							{% for percentage in student.percent %}
+							<td class="ams-table__cell"><span class="ams-table__value">{{ percentage|floatformat:1 }}%</span></td>
+							{% endfor %}
+						</tr>
+						<div class="bg-modal">
+								<div class="modal-content">
+									<div class="close">+</div>
+									<iframe src="{% url 'hod_stu_att_view' selected_semester student.reg_no %}"></iframe>
+								</div>
+							</div>
 						{% endfor %}
-				</tbody>
-				</form>
-			</table>
+					</table>
+				</div>
 			</div>
-		{% elif not freshpage %}
-		<div>
-			No student found for selected semester and batch.
+			{% elif not freshpage %}
+			<h1>
+				No student found for selected semester and batch.
+			</h1>
+			{% else %}
+			<h1>Select a valid combination from the above drop-downs to view the attendance.</h1>
+			{% endif %}
+
 		</div>
-		{% endif %}
-
-	</div>
-
-<script src="{% static 'faculty/js/faculty.js' %}"></script>
+	<script src="{% static 'authentication/js/ams.js' %}"></script>
 </body>
 </html>
