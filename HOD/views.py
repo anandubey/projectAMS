@@ -109,16 +109,16 @@ def attendance_modifier(request):
             end_date_entered = request.POST.get('hod_attend_edit_end_date')
             print(reg_no_to_modify, start_date_entered, end_date_entered)
             if _modify_attendance_for_student(reg_no_to_modify, start_date_entered, end_date_entered):
-                messages.success(request, 'Attendance modified successfully')
+                status = 'Attendance modified successfully'
             else:
-                messages.error(request, 'Failed to modify attendance')
+                status = 'Failed to modify attendance'
             attendance_data = dict()
             try:
                 student = StudentProfile.objects.get(reg_no=reg_no_to_modify)
                 attendance_data = _get_attendance_data_for_student(student)
-                return render(request, 'HOD/hod_attend_edit.html', {'sem': semesters, 'attendance':attendance_data})
+                return render(request, 'HOD/hod_attend_edit.html', {'sem': semesters, 'attendance':attendance_data, 'status':status})
             except StudentProfile.DoesNotExist:
-                messages.error(request, 'Failed to modify attendance')
+                #messages.error(request, 'Failed to modify attendance')
                 return redirect('attendance_modifier')
 
         elif 'att_mod_filter_btn' in request.POST:

@@ -9,6 +9,7 @@ def student(request):
     user_type = request.session.get('user_type')
     if user_type != 'student':
         return redirect('home')
+    
     if username is not None:
         user_instance = StudentProfile.objects.get(reg_no=username)
         department = user_instance.department

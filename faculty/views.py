@@ -34,12 +34,16 @@ def update_attend(request):
             department = request.POST.get('select_department')
             course_code = request.POST.get('select_course_code')
             selected_date = request.POST.get('att_date')
- 
-            user_set = StudentProfile.objects.filter(reg_no__startswith=batch, department=department)
+            user_set = None
+            date_exist = False
+            if not attendance.objects.filter(date=selected_date).exists():
+                user_set = StudentProfile.objects.filter(reg_no__startswith=batch, department=department)
+            else:
+                date_exist = True
             filters = _get_filters(username=username, selected_batch=batch, selected_department=department, selected_course=course_code)
             filters['selected_date'] = selected_date
             filters['selected_course'] = course_code
-            return render(request, 'faculty/update_attend.html', {'user_instance': faculty, 'filters':filters,'user_set': user_set})
+            return render(request, 'faculty/update_attend.html', {'user_instance': faculty, 'filters':filters,'user_set': user_set, 'date_exist':date_exist})
         
         elif 'att_data_submit_btn' in request.POST:
             _save_attendance_data(request.POST)

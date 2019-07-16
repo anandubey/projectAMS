@@ -102,6 +102,10 @@
 				<button type="submit" name="att_data_submit_btn" id="submit_option_selector"  form="attendance_form">SUBMIT</button>
 			</form>
 			</div>
+			{% elif date_exist %}
+			<div style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+				<span onselect="return false;">The attendance for selected date has already been entered. Please select another date.</span>
+			</div>
 			{% else %}
 				{% if messages %}
 					{% for message in messages %}

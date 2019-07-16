@@ -23,7 +23,7 @@
 						<img src="{% static 'student/img/nitn_logo.png' %}">
 					</a>
 				</div>
-				<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
+				<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System </h1>
 				<span></span>
 			</div>
 			<div class="ams-navbar_links">
@@ -83,18 +83,13 @@
 						</tr>
 
 						{% for student in attendance.students %}
-						<tr class="ams-table__row ams-table-header">
-							<td class="ams-table__cell"><span class="ams-table__value"><a href="{% url 'hod_stu_att_view' selected_semester student.reg_no %}" target="_attview" onclick="PopupCenter(this.href, '580', '540');">{{ student.reg_no }}</a></span></td>
+						<tr class="ams-table__row ams-table-header" onclick="document.getElementById('modal_frame').src='{% url 'hod_stu_att_view' selected_semester student.reg_no %}';">
+							<td class="ams-table__cell"><span class="ams-table__value">{{ student.reg_no }}</span></td>
 							{% for percentage in student.percent %}
 							<td class="ams-table__cell"><span class="ams-table__value">{{ percentage|floatformat:1 }}%</span></td>
 							{% endfor %}
 						</tr>
-						<div class="bg-modal">
-								<div class="modal-content">
-									<div class="close">+</div>
-									<iframe src="{% url 'hod_stu_att_view' selected_semester student.reg_no %}"></iframe>
-								</div>
-							</div>
+						
 						{% endfor %}
 					</table>
 				</div>
@@ -107,6 +102,12 @@
 			<h1>Select a valid combination from the above drop-downs to view the attendance.</h1>
 			{% endif %}
 
+		</div>
+		<div class="bg-modal">
+			<div class="modal-content">
+				<div class="close">+</div>
+				<iframe id="modal_frame" src=""></iframe>
+			</div>
 		</div>
 	<script src="{% static 'authentication/js/ams.js' %}"></script>
 </body>

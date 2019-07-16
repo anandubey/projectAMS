@@ -82,13 +82,7 @@
 						
 					</table>
 				</div>
-			</div>
-
-
-
-
-						
-					
+			</div>					
 				<form method="POST" id="attendance_form">
 					{% csrf_token %}
 					<input type="hidden" name="hod_attend_edit_reg_no" value="{{ attendance.reg_no }}">
@@ -106,6 +100,9 @@
 				<h3>No student found for given registration number.</h3>
 			</div>
 			{% endif %}
+			<div>
+				{{ status }}
+			</div>
 
 		</div>
 
