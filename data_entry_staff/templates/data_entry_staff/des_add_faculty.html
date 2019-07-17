@@ -28,26 +28,30 @@
 			</div>
 			<div class="ams-navbar_links">
 				<div class="dropdown">
-					<button class="dropbtn">ALLOT COURSES</button>
-					<div class="dropdown-content">
-						{% for semester in sem %}
-							<a href="{% url 'course_settings' semester %}">Semester {{ semester }}</a>
-						{% endfor %}
+						<a href="{% url 'des_create_batch' %}">
+							<button class="dropbtn">CREATE BATCH</button>
+						</a>
+					</div>		
+					<div class="dropdown">
+						<a href="{% url 'des_add_course' %}">
+							<button class="dropbtn">ADD COURSE</button>
+						</a>
 					</div>
-				</div>
-				<div class="dropdown">
-					<button class="dropbtn">VIEW / MODIFY ATTENDANCE</button>
-					<div class="dropdown-content">
-							<a href="{% url 'attendance_viewer' %}"> VIEW ATTENDANCE </a>
-							<a href="{% url 'attendance_modifier' %}"> MODIFY ATTENDANCE </a>
-						</div>
-				</div>
-				<div class="dropdown">
-					<a href="{% url 'view_courses' %}"><button class="dropbtn">VIEW ALLOTED COURSES</button></a>
-				</div>
-				<div class="dropdown">
-					<a href="{% url 'hod_logout' %}"><button class="dropbtn">LOGOUT</button></a>
-				</div>
+					<div class="dropdown">
+						<a href="{% url 'des_add_faculty' %}">
+							<button class="dropbtn">ADD FACULTY</button>
+						</a>
+					</div>
+					<div class="dropdown">
+						<a href="{% url 'des_combine_courses' %}">
+							<button class="dropbtn">COMBINE COURSES</button>
+						</a>
+					</div>
+					<div class="dropdown">
+						<a href="{% url 'des_logout' %}">
+							<button class="dropbtn">LOGOUT</button>
+						</a>
+					</div>
 			</div>
 		</div>
 		<div class="site-container">

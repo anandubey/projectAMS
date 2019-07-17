@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import DES_Credential
 
-# Register your models here.
+admin.site.register(DES_Credential)

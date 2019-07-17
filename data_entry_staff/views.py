@@ -7,34 +7,37 @@ from student.models import StudentProfile
 # Create your views here.
 
 def index(request):
-    if not _logged(request):
-        return redirect('home')
+    if request.session.get('logged'):
+        if not des_logged(request):
+            return redirect('home')
+        else:
+            return redirect('des_dashboard')
 
     if request.method == 'POST':
         return _des_login(request)
     else:
-        return HttpResponse("Data entry staff login page.")
+        return render(request, 'data_entry_staff/des_index.html')
 
 
 def dashboard(request):
-    if not _logged(request):
+    if not des_logged(request):
         return redirect('home')
 
-    return HttpResponse("DES dashboard")
+    return render(request, 'data_entry_staff/des_dashboard.html')
 
 
 def create_batch(request):
-    if not _logged(request):
+    if not des_logged(request):
         return redirect('home')
 
     if request.method == 'POST':
         pass
     else:
-        return HttpResponse("DES add batch")
+        return render(request, 'data_entry_staff/des_create_batch.html',{})
 
 
 def add_faculty(request):
-    if not _logged(request):
+    if not des_logged(request):
         return redirect('home')
     
     if request.method == 'POST':
@@ -45,23 +48,24 @@ def add_faculty(request):
         faculty_name = request.POST.get('faculty_name_entered')
         faculty_email = request.POST.get('faculty_email_entered')
         faculty_department = request.POST.get('faculty_dep_entered')
-
     else:
-        return HttpResponse('DES Add faculty page')
+        return render(request, 'data_entry_staff/des_add_faculty.html', {})
 
 
 def add_course(request):
-    if not _logged(request):
+    if not des_logged(request):
         return redirect('home')
         
+    if request.method == 'GET':
+        return render(request, 'data_entry_staff/des_add_course.html',{})
     return HttpResponse('DES add course page')
 
 
 def combine_course(request):
-    if not _logged(request):
+    if not des_logged(request):
         return redirect('home')
         
-    return HttpResponse('DES course combine page.')
+    return render(request, 'data_entry_staff/des_combine_course.html',{})
 
 
 def des_logout(request):
@@ -91,7 +95,7 @@ def _des_login(request):
         return render(request,'data_entry_staff/des_index.html', {'error': "Wrong Password! Try Again"})
 
 
-def _logged(request):
+def des_logged(request):
     if not request.session.get('logged'):
         return False
     user_type = request.session.get('user_type')
