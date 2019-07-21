@@ -11,9 +11,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>NITN-AMS | HOD Edit Attendance</title>
-  	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
-</head>
+	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
+	<link rel="stylesheet" type="text/css" href="{% static 'data_entry_staff/css/des.css' %}">	
 
+</head>
+	
 <body>
 	<div class="hod_main_body hod_view_att_main_body">
 		<div class="ams-hod_navbar">
@@ -23,7 +25,7 @@
 						<img src="{% static 'student/img/nitn_logo.png' %}">
 					</a>
 				</div>
-				<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
+				<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System </h1>
 				<span></span>
 			</div>
 			<div class="ams-navbar_links">
@@ -35,11 +37,6 @@
 					<div class="dropdown">
 						<a href="{% url 'des_add_course' %}">
 							<button class="dropbtn">ADD COURSE</button>
-						</a>
-					</div>
-					<div class="dropdown">
-						<a href="{% url 'des_add_faculty' %}">
-							<button class="dropbtn">ADD FACULTY</button>
 						</a>
 					</div>
 					<div class="dropdown">
@@ -59,7 +56,7 @@
 				<form method="POST">
 					{% csrf_token %}
 					<select name="select_batch" required>
-						<option value="" disabled selected>Select batch</option>
+						<option value="" disabled selected>Select Department</option>
 						{% for year, checked in batch_filter.items %}
 						<option value="{{ year }}" {% if checked %} selected {% endif %}>{{ year }} - {{ year|add:"4" }}</option>
 						{% endfor %}
@@ -74,33 +71,45 @@
 					</select>
 				</form>
 			</div>
-			{% if courses %}
+			
 			<div class="ams-attendance_table">
 				<div class="ams-table ams-hod_edit_table">
 					<table class="ams-table__table">
 						<tr class="ams-table-header ">
 							<th>COURSE CODE</th>
 							<th> COURSE TITLE</th>
-							<th>ALLOTED FACULTY</th>
+							<th></th>
 							
 						</tr>
 
-						{% for course in courses %}
+						
 						<tr class="ams-table__row ams-table-header">
-							<td class="ams-table__cell"><span class="ams-table__value">{{ course.code }}</a></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value">{{ course.title }}</a></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value">{{ course.faculty }}</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">CS201</span></td>
+							<td class="ams-table__cell"><span class="ams-table__value">Algorithmics</span></td>
+							<td class="ams-table__cell">
+								<span class="ams-table__value">
+									<div class="toggler-container">
+										<label for="contract_toggle" class="contract_toggle">
+										<input type="checkbox" id="contract_toggle" name="contract_toggle"/>
+										<span class="toggle_bar">
+										<span class="toggle_square"></span>
+										</span>
+										</label>
+									</div>
+								</span>
+							</td>
 						</tr>
-						{% endfor %}
+						
 					</table>
 				</div>
 			</div>
-			{% elif no_course %}
-			<div>
-				<h3>No course allotment found for selected semester and batch.</h3>
-			</div>
-			{% endif %}
+			
 		</div>
+
+
+		
+
+	  
 	</div>
 </body>
 </html>
