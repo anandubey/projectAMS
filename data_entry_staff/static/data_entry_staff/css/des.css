@@ -1,0 +1,58 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+.option-picker > form > input[type="text"]:not(:last-of-type){
+    margin-right: 20px; 
+}
+.option-picker > form > input[type="text"]:not(:first-of-type){
+    margin-left:20px; 
+}
+.ams-table__value > input{
+  font-size: 1rem;
+  padding: 5px;
+    
+}
+.modal-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute ;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content{
+    width: 520px;
+    height: 400px;
+    background-color: white;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    
+  }
+ 
+  .modal-content > input{
+      font-size: 1rem;
+      width: 60%;
+      padding: 10px;
+      margin: 20px;
+  }
+
+  #submit_option_selector{
+      margin-top: 20px;
+      padding: 10px;
+  }

@@ -11,7 +11,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>NITN-AMS | HOD View Attendance</title>
-  	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
+	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
+	<link rel="stylesheet" type="text/css" href="{% static 'data_entry_staff/css/des.css' %}">	
+
 </head>
 
 <body>
@@ -38,11 +40,6 @@
 						</a>
 					</div>
 					<div class="dropdown">
-						<a href="{% url 'des_add_faculty' %}">
-							<button class="dropbtn">ADD FACULTY</button>
-						</a>
-					</div>
-					<div class="dropdown">
 						<a href="{% url 'des_combine_courses' %}">
 							<button class="dropbtn">COMBINE COURSES</button>
 						</a>
@@ -60,59 +57,46 @@
 				<form method="POST" name="select_option_form" >
 					{% csrf_token %}
 					<select name="select_batch" required>
-						<option value="">Select Batch</option>
-						{% for year, checked in batch_filter.items %}
-						<option value="{{ year }}" {% if checked %} selected {% endif %}>{{ year }} - {{ year|add:"4" }}</option>
-						{% endfor %}
+						<option value="">Select Department</option>
+						
+						<option></option>
+						
 					</select>
-					<select name="select_semester" required onchange="this.form.submit()">
-						<option value="">Select Semester</option>
-						{% if batch_filter %}
-						{% for semester, checked in semester_filter.items %}
-						<option value="{{ semester }}" {% if checked %} selected {% endif %}>Semester {{ semester }}</option>
-						{% endfor %}
-						{% endif %}
-					</select>
+					<input type="text" placeholder="Starting Reg. No." required>
+					<input type="text" placeholder="No. of Students" required>
+					<button type="submit" name="" id="submit_option_selector">SUBMIT</button>
+
 				</form>
 			</div>	
-			{% if attendance %}
-			<div class="ams-attendance_table">
+			<form method="POST" id="student_data_form">
+				{% csrf_token %}
+		<!--keep  if necessary-->		<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
+		<!--keep if necessary-->		<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
+				
 				<div class="ams-table">
 					<table class="ams-table__table">
 						<tr class="ams-table-header ">
-							<th> Registration No. </th>
-							{% for course_code in attendance.courses %}
-							<th>{{ course_code }}</th>
-							{% endfor %}
+							<th> Registration No. </th> 	<!--non editable-->  
+							<th> Student's Name</th>
+							<th> Student's Email</th>
+							<th> Department</th>     <!--non editable-->  
 						</tr>
 
-						{% for student in attendance.students %}
-						<tr class="ams-table__row ams-table-header" onclick="document.getElementById('modal_frame').src='{% url 'hod_stu_att_view' selected_semester student.reg_no %}';">
-							<td class="ams-table__cell"><span class="ams-table__value">{{ student.reg_no }}</span></td>
-							{% for percentage in student.percent %}
-							<td class="ams-table__cell"><span class="ams-table__value">{{ percentage|floatformat:1 }}%</span></td>
-							{% endfor %}
+						
+						<tr class="ams-table__row ams-table-header">
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="reg_no" value="2017105142" readonly></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_name" placeholder="Student's Name" value=""></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_email" placeholder="Student's Email" value=""></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_dep" placeholder="Student's Department" value="CSE" readonly></span></td>
 						</tr>
 						
-						{% endfor %}
 					</table>
 				</div>
-			</div>
-			{% elif not freshpage %}
-			<h1>
-				No student found for selected semester and batch.
-			</h1>
-			{% else %}
+				<button type="submit" name="att_data_submit_btn" id="submit_option_selector"  form="attendance_form">SUBMIT</button>
+			</form>
 			<h1>Select a valid combination from the above drop-downs to view the attendance.</h1>
-			{% endif %}
 
 		</div>
-		<div class="bg-modal">
-			<div class="modal-content">
-				<div class="close">+</div>
-				<iframe id="modal_frame" src=""></iframe>
-			</div>
-		</div>
-	<script src="{% static 'authentication/js/ams.js' %}"></script>
+
 </body>
 </html>
