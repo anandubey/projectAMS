@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.db.models import Min, Max
-from .models import Hod_credential, Course, Semester_wise_course, Course_allot 
+from .models import Hod_credential, Course, Semester_wise_course, Course_allot, Semester_wise_electives
 from faculty.models import FacultyProfile, attendance
 from student.models import StudentProfile
 from datetime import date
@@ -54,6 +54,11 @@ def course_settings(request,semester=None):
             courses = []
             try:
                 course_codes = Semester_wise_course.objects.get(semester=semester, department=department).courses.split('-')
+                if semester > 4:
+                    try:
+                        course_codes += Semester_wise_electives.objects.get(department=department, semester=semester, year=batch).elective_courses.split('-')
+                    except Semester_wise_electives.DoesNotExist:
+                        pass
                 for faculty in faculty_group:
                     faculties.append({'id':faculty.faculty_id, 'name':faculty.name})
                 for code in course_codes:
@@ -164,7 +169,13 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
                 template_data['invalid_reg'] = True
             else:
                 course_year = str(int(reg_no[:4])+ (sem//2))
-                courses = Semester_wise_course.objects.get(department=student.department, semester=sem, year=course_year).courses.split('-')
+                courses = Semester_wise_course.objects.get(department=student.department, semester=sem).courses.split('-')
+                if sem > 4:
+                    try:
+                        courses += Semester_wise_electives.objects.get(department=department, semester=sem, year=course_year).elective_courses.split('-')
+                    except Semester_wise_electives.DoesNotExist:
+                        pass
+                    
                 att_data_list = []                                         # using list of dictionaries to store attendance 
                 for course_code in courses:
                     total = attendance.objects.filter(reg_no=student, course_code=course_code).count()
@@ -292,7 +303,6 @@ def _get_batches_filter(selected=None):
 
 # Below function seems to be useless
 def _get_course_filter(request, selected=None, semester=None):
-    print("TETTETETETETETETTETETESJDGFSJDFGSDFHDSGK")
     current_hod = request.session.get('username')
     department = Hod_credential.objects.get(hod_id=current_hod).department
     if semester is None:
@@ -317,9 +327,15 @@ def _get_attendance_data_for_batch(department, batch=None, semester=None):
     if semester is None or batch is None:
         return dict()
     else:
+        semester = int(semester)
         try:
-            course_year = str(int(batch) + int(semester) // 2)
-            courses = Semester_wise_course.objects.get(department=department, semester=int(semester), year=course_year).courses.split('-')
+            course_year = str(int(batch) + semester // 2)
+            courses = Semester_wise_course.objects.get(department=department, semester=semester).courses.split('-')
+            if int(semester) > 4:
+                try:
+                    courses += Semester_wise_electives.objects.get(department=department, semester=semester, year=course_year).elective_courses.split('-')
+                except Semester_wise_electives.DoesNotExist:
+                    pass
             students = list(StudentProfile.objects.filter(reg_no__startswith=batch).values_list('reg_no', flat=True).order_by('reg_no'))
         except Semester_wise_course.DoesNotExist:
             return dict()
@@ -367,7 +383,12 @@ def _get_attendance_data_for_student(student_profile):
     
     att_data_list = list()
     course_year = str(date.today().year)
-    courses = Semester_wise_course.objects.get(department=student_profile.department, semester=this_semester, year=course_year).courses.split('-')
+    courses = Semester_wise_course.objects.get(department=student_profile.department, semester=this_semester).courses.split('-')
+    if this_semester > 4:
+        try:
+            courses += Semester_wise_electives.objects.get(department=department, semester=this_semester, year=course_year).elective_courses.split('-')
+        except Semester_wise_electives.DoesNotExist:
+            pass
     
     for course_code in courses:
         total = attendance.objects.filter(reg_no=student_profile, course_code=course_code).count()

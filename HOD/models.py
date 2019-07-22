@@ -33,7 +33,7 @@ class Semester_wise_course(models.Model):
     # courses stores course codes for given semester and department in format <CODE-CODE-...>
 
     def __str__(self):
-        return self.department + ' | ' + self.year + ' | ' + str(self.semester) + ' | ' + self.courses
+        return self.department + ' | ' + str(self.semester) + ' | ' + self.courses
 
 
 class Semester_wise_electives(models.Model):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import StudentProfile
 from faculty.models import attendance
-from HOD.models import Semester_wise_course
+from HOD.models import Semester_wise_course, Semester_wise_electives
 from datetime import date
 
 def student(request):
@@ -19,7 +19,12 @@ def student(request):
         print('this sem', this_semester)
         this_year = str(date.today().year)
         try:
-            courses = Semester_wise_course.objects.get(department=department, semester=this_semester, year=this_year).courses.split('-')
+            courses = Semester_wise_course.objects.get(department=department, semester=this_semester).courses.split('-')
+            if this_semester > 4:
+                try:
+                    courses += Semester_wise_electives.objects.get(department=department, semester=this_semester, year=this_year).elective_courses.split('-')
+                except Semester_wise_electives.DoesNotExist:
+                    pass
             att_data_list = []                                         # using list of dictionaries to store attendance 
             for course_code in courses:
                 total = attendance.objects.filter(reg_no=user_instance, course_code=course_code).count()

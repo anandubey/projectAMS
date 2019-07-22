@@ -4,7 +4,7 @@ from .models import DES_Credential
 from faculty.models import FacultyProfile
 from student.models import StudentProfile
 from authentication.models import FacultyCredential, StudentCredential
-from HOD.models import Course
+from HOD.models import Course, Semester_wise_electives
 from datetime import date
 
 # Create your views here.
@@ -132,8 +132,8 @@ def combine_course(request):
             return render(request, 'data_entry_staff/des_combine_course.html', {'dep_list':dep_list, 'year_list':year_list, 'elective': elective})
 
         elif 'combine_course_submit_btn' in request.POST:
-            success = _parse_electives(request.POST)
-            return render(request, 'data_entry_staff/des_combine_course.html',{'dep_list':dep_list, 'year_list':year_list})
+            success = _save_electives(request.POST)
+            return render(request, 'data_entry_staff/des_combine_course.html',{'dep_list':dep_list, 'year_list':year_list, 'success':success})
         else:
             return redirect('des_combine_courses')
     else:
@@ -245,18 +245,27 @@ def _make_password(new_student):
     
 
 
-def _parse_electives(post_array):
-    year = post_array.get('elective_year')
+def _save_electives(post_array):
+    year = str(post_array.get('elective_year'))
     department = post_array.get('elective_department')
-    semester = post_array.get('elective_semester')
+    semester = int(post_array.get('elective_semester'))
 
     elective_courses = []
-    one_sub = dict()
-
     for var in post_array:
         if var.startswith('elective_choice_'):
             if post_array.get(var) == 'on':
                 elective_courses.append(var.split('_')[-1])
     
-    print('courses', elective_courses)
-    return None
+    elective_courses.sort()
+    courses_db_string = '-'.join(elective_courses)
+
+    if Semester_wise_electives.objects.filter(department=department, year=year, semester=semester).exists():
+        new_elective_list = Semester_wise_electives.objects.get(department=department, year=year, semester=semester)
+        new_elective_list.elective_courses = courses_db_string
+        new_elective_list.save()
+        print("Done with ELE for overwrite")
+    else:
+        new_elective_list = Semester_wise_electives.objects.create(department=department, year=year, semester=semester, elective_courses=courses_db_string)
+        new_elective_list.save()
+        print("Done with ELE")
+    return 'Electives saved for year ' + year + ' in ' + department + ' department semester ' + str(semester)
