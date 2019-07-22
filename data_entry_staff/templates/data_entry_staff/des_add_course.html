@@ -55,11 +55,23 @@
 		<div class="site_container">
 			<div class="modal-container">
 				<div class="modal-content">
-					<div class="close">+</div>
-					<input type="text" placeholder="Course Code">
-					<input type="text" placeholder="Course Title">
-					<button type="submit" name="" id="submit_option_selector">SUBMIT</button>
+					<form method="POST">
+						{% csrf_token %}
+						<input type="text" name="course_code" placeholder="Course Code"><br>
+						<input type="text" name="course_title" placeholder="Course Title"><br>
+						<label for="is_elective" value="True">Is elective?</label><input type="checkbox" name="is_elective">
+						<button type="submit" id="submit_option_selector">SUBMIT</button>
+					</form>
 
+					{% if success %}
+					<div>
+						{{ success }}
+					</div>
+					{% elif error %}
+					<div>
+						{{ error }}
+					</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>

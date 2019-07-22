@@ -57,22 +57,24 @@
 			<div class="option-picker">	
 				<form method="POST" name="select_option_form" >
 					{% csrf_token %}
-					<select name="select_batch" required>
-						<option value="">Select Department</option>
-						
-						<option></option>
-						
+					<select name="new_batch_dep" required>
+						<option value="" disabled selected>Select Department</option>
+						{% for department in dep_list %}
+						<option value="{{ department }}">{{ department }}</option>
+						{% endfor %}
 					</select>
-					<input type="text" placeholder="Starting Reg. No." required>
-					<input type="text" placeholder="No. of Students" required>
-					<button type="submit" name="" id="submit_option_selector">SUBMIT</button>
-
+					<input type="text" name="new_batch_year" placeholder="Year" pattern="^20[0-9]{2}$" title="1999 < Year < 2100" required>
+					<input type="text" name="starting_roll_no" placeholder="Starting Reg. No." pattern="^\d{3}$" title="Last 3 digits of first roll no." required>
+					<input type="text" name="new_batch_size" placeholder="No. of Students" pattern="^[0-9]*$" title="Only number" required>
+					<button type="submit" name="new_batch_option_btn" id="submit_option_selector">SUBMIT</button>
 				</form>
-			</div>	
+			</div>
+			{% if no_of_students %}
 			<form method="POST" id="student_data_form">
 				{% csrf_token %}
-		<!--keep  if necessary-->		<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
-		<!--keep if necessary-->		<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
+				<input type="hidden" name="new_batch_first_roll" id="attendance_date" value="{{ first_roll_no }}">
+				<input type="hidden" name="no_of_students" value="{{ no_of_students|last|add:1 }}">
+				<input type="hidden" name="new_batch_department" value="{{ department }}">
 				
 				<div class="ams-table">
 					<table class="ams-table__table">
@@ -83,19 +85,26 @@
 							<th> Department</th>     <!--non editable-->  
 						</tr>
 
-						
+						{% for i in no_of_students %}
 						<tr class="ams-table__row ams-table-header">
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="reg_no" value="2017105142" readonly></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_name" placeholder="Student's Name" value=""></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_email" placeholder="Student's Email" value=""></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_dep" placeholder="Student's Department" value="CSE" readonly></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_reg_{{ first_roll_no|add:i }}" value="{{ first_roll_no|add:i }}" readonly></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_name_{{ first_roll_no|add:i }}" placeholder="Student's Name" value="" required></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_email_{{ first_roll_no|add:i }}" placeholder="Student's Email" value="" required></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_dep" placeholder="Student's Department" value="{{ department }}" readonly></span></td>
 						</tr>
+						{% endfor %}
 						
 					</table>
 				</div>
-				<button type="submit" name="att_data_submit_btn" id="submit_option_selector"  form="attendance_form">SUBMIT</button>
+				<button type="submit" name="new_batch_submit_btn" id="submit_option_selector">SUBMIT</button>
 			</form>
-			<h1>Select a valid combination from the above drop-downs to view the attendance.</h1>
+			{% elif error %}
+			<h4>{{ error }}</h4>
+			{% elif success %}
+			<h4>{{ success }}</h4>
+			{% else %}
+			<h1>Enter the required details to create a new batch.</h1>
+			{% endif %}
 
 		</div>
 
