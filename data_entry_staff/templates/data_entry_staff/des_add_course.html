@@ -59,7 +59,16 @@
 						{% csrf_token %}
 						<input type="text" name="course_code" placeholder="Course Code"><br>
 						<input type="text" name="course_title" placeholder="Course Title"><br>
-						<label for="is_elective" value="True">Is elective?</label><input type="checkbox" name="is_elective">
+						<div class="toggler-container">
+								
+							<label for="contract_toggle" class="contract_toggle">
+									Is elective?
+							<input type="checkbox" id="contract_toggle" name="is_elective"/>
+							<span class="toggle_bar">
+							<span class="toggle_square"></span>
+							</span>
+							</label>
+						</div>
 						<button type="submit" id="submit_option_selector">SUBMIT</button>
 					</form>
 
