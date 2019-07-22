@@ -172,7 +172,7 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
                 courses = Semester_wise_course.objects.get(department=student.department, semester=sem).courses.split('-')
                 if sem > 4:
                     try:
-                        courses += Semester_wise_electives.objects.get(department=department, semester=sem, year=course_year).elective_courses.split('-')
+                        courses += Semester_wise_electives.objects.get(department=student.department, semester=sem, year=course_year).elective_courses.split('-')
                     except Semester_wise_electives.DoesNotExist:
                         pass
                     
@@ -386,7 +386,7 @@ def _get_attendance_data_for_student(student_profile):
     courses = Semester_wise_course.objects.get(department=student_profile.department, semester=this_semester).courses.split('-')
     if this_semester > 4:
         try:
-            courses += Semester_wise_electives.objects.get(department=department, semester=this_semester, year=course_year).elective_courses.split('-')
+            courses += Semester_wise_electives.objects.get(department=student_profile.department, semester=this_semester, year=course_year).elective_courses.split('-')
         except Semester_wise_electives.DoesNotExist:
             pass
     
