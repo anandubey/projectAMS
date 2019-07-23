@@ -79,43 +79,43 @@
 			</div>
 			{% if elective %}
 			<form method="POST">
-				{% csrf_token %}
-				<input type="hidden" name="elective_year" value="{{ elective.elective_year }}">
-				<input type="hidden" name="elective_department" value="{{ elective.elective_department }}">
-				<input type="hidden" name="elective_semester" value="{{ elective.elective_semester }}">
-				<div class="ams-attendance_table">
-					<div class="ams-table ams-hod_edit_table">
-						<table class="ams-table__table">
-							<tr class="ams-table-header ">
-								<th>COURSE CODE</th>
-								<th> COURSE TITLE</th>
-								<th></th>
-							</tr>
-							
-							{% for course in elective.courses %}
-							<tr class="ams-table__row ams-table-header">
-								<td class="ams-table__cell"><span class="ams-table__value">{{ course.course_code }}</span></td>
-								<td class="ams-table__cell"><span class="ams-table__value">{{ course.title }}</span></td>
-								<td class="ams-table__cell">
-									<span class="ams-table__value">
-										<div class="toggler-container">
-											<label for="contract_toggle" class="contract_toggle">
-											<input type="checkbox" id="contract_toggle" name="elective_choice_{{ course.course_code }}"/>
-											<span class="toggle_bar">
-											<span class="toggle_square"></span>
-											</span>
-											</label>
-										</div>
-									</span>
-								</td>
-							</tr>
-							{% endfor %}
-							
-						</table>
+					{% csrf_token %}
+					<input type="hidden" name="elective_year" value="{{ elective.elective_year }}">
+					<input type="hidden" name="elective_department" value="{{ elective.elective_department }}">
+					<input type="hidden" name="elective_semester" value="{{ elective.elective_semester }}">
+					<div class="ams-attendance_table">
+						<div class="ams-table ams-hod_edit_table">
+							<table class="ams-table__table">
+								<tr class="ams-table-header ">
+									<th>COURSE CODE</th>
+									<th> COURSE TITLE</th>
+									<th></th>
+								</tr>
+								
+								{% for course in elective.courses %}
+								<tr class="ams-table__row ams-table-header">
+									<td class="ams-table__cell"><span class="ams-table__value">{{ course.course_code }}</span></td>
+									<td class="ams-table__cell"><span class="ams-table__value">{{ course.title }}</span></td>
+									<td class="ams-table__cell">
+										<span class="ams-table__value">
+											<div class="toggler-container">
+												<label for="contract_toggle" class="contract_toggle">
+												<input type="checkbox" id="contract_toggle" name="elective_choice_{{ course.course_code }}"/>
+												<span class="toggle_bar">
+												<span class="toggle_square"></span>
+												</span>
+												</label>
+											</div>
+										</span>
+									</td>
+								</tr>
+								{% endfor %}
+								
+							</table>
+						</div>
+						<button type="submit" name="combine_course_submit_btn" id="submit_option_selector">SUBMIT</button>
 					</div>
-					<button type="submit" name="combine_course_submit_btn" id="submit_option_selector">SUBMIT</button>
-				</div>
-				</form>
+					</form>
 			{% elif success %}
 			<div><h4>{{ success }}</h4></div>
 			{% elif error %}
@@ -124,11 +124,6 @@
 			<div><h1>Select department, year, and semester to choose electives.</h1></div>
 			{% endif %}
 		</div>
-
-
-		
-
-	  
 	</div>
 </body>
 </html>

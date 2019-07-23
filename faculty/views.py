@@ -74,7 +74,6 @@ def view_attend(request):
         faculty = FacultyProfile.objects.get(faculty_id=username)
         
         selected_year = request.POST.get('select_year')
-
         selected_semester = request.POST.get('select_semester')
         selected_semester = None if (selected_semester == '' or selected_semester is None) else int(selected_semester)
 

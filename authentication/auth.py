@@ -12,13 +12,13 @@ def login(request):
             user_instance = StudentCredential.objects.get(reg_no=username_entered)
             user_type = 'student'
         except StudentCredential.DoesNotExist:
-            return render(request, 'authentication/index.html', {'error': "Wrong Username! Try Again"})
+            return render(request, 'authentication/index.html', {'error': "Invalid Username! Try Again"})
     else:
         try:
             user_instance = FacultyCredential.objects.get(fac_id=username_entered)
             user_type = 'faculty'
         except FacultyCredential.DoesNotExist:
-            return render(request, 'authentication/index.html', {'error': "Wrong Username! Try Again"})
+            return render(request, 'authentication/index.html', {'error': "Invalid Username! Try Again"})
     
     if user_instance.password == password_entered:
         request.session['username'] = username_entered

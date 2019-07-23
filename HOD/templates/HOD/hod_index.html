@@ -25,10 +25,8 @@
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div>
-                {% if messages %}
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
+                {% if invalid_cred %}
+                        {{ invalid_cred }}
                 {% endif %}
                 </div><br>
                 <div>
@@ -36,7 +34,7 @@
                 </div>
             </form>
             <div class="hod_button_div">
-                <a href="{% url 'home' %}"><button type="submit" class="hod_button btn draw-border">LOGIN AS FACULTY / STUDENT </button></a>
+                <a href="{% url 'home' %}"><button type="submit" class="hod_button btn draw-border">FACULTY / STUDENT LOGIN</button></a>
             </div>
         </div>
     </div>

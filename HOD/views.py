@@ -7,6 +7,7 @@ from faculty.models import FacultyProfile, attendance
 from student.models import StudentProfile
 from datetime import date
 
+
 def index(request):
     if request.method == "POST":
         username_entered = request.POST.get('username')
@@ -15,8 +16,7 @@ def index(request):
             hod_login(request)
             return redirect('hod_dashboard')
         else:
-            messages.error(request, "Wrong credentials!")
-            return redirect('hod_index')
+            return render(request, 'HOD/hod_index.html',{'invalid_cred':'Invalid credentials!'})
     else:
         if not request.session.get('logged'):
             return render(request, 'HOD/hod_index.html',{})
@@ -48,7 +48,6 @@ def course_settings(request,semester=None):
             active_username = request.session.get('username')
             hod_instance = Hod_credential.objects.get(hod_id=active_username)
             department = hod_instance.department
-            #faculty_group = FacultyProfile.objects.filter(department=department)
             faculty_group = FacultyProfile.objects.all()
             faculties = []
             courses = []
@@ -142,6 +141,7 @@ def attendance_modifier(request):
     else:
         return render(request, 'HOD/hod_attend_edit.html', {'sem': semesters})
 
+
 def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
     notLoggedAccessPageContent = """
         You must login as HOD to see this page.
@@ -197,6 +197,7 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
         except Hod_credential.DoesNotExist:
             return redirect('attendance_viewer')
 
+
 def attendance_viewer(request):
     semesters = _get_semesters(request)
     department = Hod_credential.objects.get(hod_id=request.session.get('username')).department
@@ -242,7 +243,7 @@ def allot_courses(request):
                 allotment_object = Course_allot.objects.create(year=batch, department=course_department, course_code=course_instance, faculty_id=faculty_instance, semester=course_semester)
                 allotment_object.save()
         messages.success(request, "Course allotment has been saved.")
-        return redirect('hod_dashboard')
+        return redirect('course_settings', semester=course_semester)
     else:
         return redirect('hod_dashboard')
 
@@ -396,7 +397,7 @@ def _get_attendance_data_for_student(student_profile):
         if total != 0:
             percent_present = (present/total)*100
         else:
-            percent_present = 100.0            
+            percent_present = 0.0            
         att_data_list.append(percent_present)
     
     data['courses'] = courses
@@ -413,6 +414,7 @@ def _modify_attendance_for_student(reg_no, start_date, end_date):
         attendance_ins.if_mod = True
         attendance_ins.save()
     return True
+
 
 def _parse_course_mapping(request):
     course_map = dict()
@@ -443,6 +445,7 @@ def authenticate(username=None, password=None):
             return False
     else:
         return False
+
 
 def _hod_is_logged(request):
     if request.session.get('logged'):

@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>NITN-AMS | HOD Edit Attendance</title>
+	<title>NITN-AMS | HOD Allot Courses</title>
   	<link rel="stylesheet" type="text/css" href="{% static 'HOD/css/hod_home.css' %}">	
 </head>
 
@@ -51,7 +51,11 @@
 			</div>
 		</div>
 		<div class="site_container">
-			{% if courses %}
+			{% if messages %}
+			{% for message in messages %}
+			<div><h2> {{ message }}</h2></div>
+			{% endfor %}
+			{% elif courses %}
 			<form method="POST" id="attendance_form" action="{% url 'allot_courses' %}">
 				{% csrf_token %}
 				<input type="hidden" name="allotment_batch" value="{{ batch }}">
