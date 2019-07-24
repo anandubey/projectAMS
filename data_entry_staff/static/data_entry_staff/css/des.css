@@ -508,6 +508,7 @@ iframe{
     margin-bottom: 20px;
     line-height: 32px;  
   }
+  
 
   .modal-content > form > #submit_option_selector{
       padding: 10px;
@@ -521,7 +522,55 @@ iframe{
 
 
 
-
+  .checkbox {
+    width: 80px;
+    height: 40px;
+    background: green;
+    float: left;
+    margin: 5px;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    position: relative;
+    outline: none;
+  }
+  .checkbox:before, .checkbox:after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+  
+  .check1 {
+    background: #F1F1F1;
+    border-radius: 100px;
+    padding: 2px;
+    transition: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+  }
+  .check1:before, .check1:after {
+    transition: 0.5s;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 0 0 10px -5px rgba(0,0,0,.5);
+    border-radius: 50%;
+  }
+  .check1:before {
+    background: #00e359;
+  }
+  .check1:after {
+    background: white;
+  }
+  .check1:checked {
+    box-shadow: 0 0 0 20px #00e359 inset;
+  }
+  .check1:checked:before {
+    width: 76px;
+  }
+  .check1:checked:after {
+    margin-left: 40px;
+  }
 
 
 

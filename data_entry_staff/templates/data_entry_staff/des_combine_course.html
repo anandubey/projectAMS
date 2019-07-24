@@ -41,7 +41,7 @@
 					</div>
 					<div class="dropdown">
 						<a href="{% url 'des_combine_courses' %}">
-							<button class="dropbtn">COMBINE COURSES</button>
+							<button class="dropbtn">ASSIGN ELECTIVES</button>
 						</a>
 					</div>
 					<div class="dropdown">
@@ -99,12 +99,10 @@
 									<td class="ams-table__cell">
 										<span class="ams-table__value">
 											<div class="toggler-container">
-												<label for="contract_toggle" class="contract_toggle">
-												<input type="checkbox" id="contract_toggle" name="elective_choice_{{ course.course_code }}"/>
-												<span class="toggle_bar">
-												<span class="toggle_square"></span>
-												</span>
-												</label>
+												
+												<input type="checkbox" class="checkbox check1" name="elective_choice_{{ course.course_code }}"/>
+												
+												
 											</div>
 										</span>
 									</td>
