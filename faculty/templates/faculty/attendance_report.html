@@ -1,0 +1,69 @@
+<!--
+	author: geekyAnand
+	© pyJaC
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NITN-AMS | Attendance Report</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+</head>
+<body style="background-color: #525659; height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="report_container">
+        <div class="header">
+            <div class="image_container">
+                <img src="{% static 'student/img/nitn_logo.png' %}">
+            </div>
+            <div class="header_container">
+                <span>राष्ट्रीय प्रौद्योगिकी संस्थान नागालैंड</span>
+
+                <span> NATIONAL INSTITUTE OF TECHNOLOGY NAGALAND </span>
+                    
+                <span>Chumukedima, Dimapur </span>
+                <span>Nagaland - 797103</span>
+            </div>
+            
+        </div>
+        <div class="dep_title">
+            <span>Department of Computer Science and Engineering</span>
+        </div>
+        <div class="course_info">
+                <div class="course_info_upper">
+                    <span><b>Semester:</b> VI</span>
+                    <span><b>Course Code:</b> CS969</span>
+                </div>
+                <div class="course_info_lower">
+                    <span><b>Faculty:</b> Mr.Nagaraju Baydeti </span>
+                    <span><b>Course Title:</b> Python Programming</span>
+                </div>
+                
+        </div>
+        <div class="table_title">
+            <span>Attendance Details of Candidates having less than 75 percent</span><br>
+            <span> No. of periods handled: 16 (Till 29-03-2019)</span>
+        </div>
+        <div class="report_table">
+            <table>
+                <tr>
+                    <th>Reg. No.</th>
+                    <th> Name of the Candidate</th>
+                    <th>No. of periods Attended</th>
+                    <th>Percentage of Attendance</th>
+                </tr>
+                <tr>
+                    <td>2015105131</td>
+                    <td>Manpong B Phom</td>
+                    <td>11</td>
+                    <td>68.75</td>   
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <span>Nagaraju Baydeti<br>Faculty In-charge</span>
+            <span>Thungthung<br> HoD</span>
+        </div>
+    </div>
+</body>

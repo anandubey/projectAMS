@@ -89,6 +89,10 @@ def view_attend(request):
 
 
 
+def attendance_report(request):
+    return render(request, 'faculty/attendance_report.html', {})
+
+
 def faculty_logout(request):
     request.session.clear()
     return redirect('home')
