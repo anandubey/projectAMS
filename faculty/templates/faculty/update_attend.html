@@ -62,7 +62,7 @@
 					<div id="date_and_btn">
 						<input type="date" name="att_date" id="att_date" value="{{ filters.selected_date }}" max="{% now 'Y-m-d' %}" required>
 					
-						<button type="submit" name="att_filter_btn" id="submit_option_selector">SUBMIT</button>
+						<button type="submit" name="att_filter_btn" class="hod_button btn draw-border">SUBMIT</button>
 					</div>
 				</form>
 			</div>	
@@ -98,7 +98,7 @@
 						{% endfor %}
 					</table>
 				</div>
-				<button type="submit" name="att_data_submit_btn" id="submit_option_selector"  form="attendance_form">SUBMIT</button>
+				<button type="submit" name="att_data_submit_btn" class="hod_button btn draw-border"  form="attendance_form">SUBMIT</button>
 			</form>
 			</div>
 			{% elif date_exist %}

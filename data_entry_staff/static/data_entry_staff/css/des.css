@@ -17,6 +17,7 @@ html, body {
   width: 100%;
   height: 100%;
   font-size: 1rem;
+  padding-bottom: 30px;
 }
 .hod_view_att_main_body{
   min-width: 1030px;
@@ -138,21 +139,34 @@ html, body {
 }
 
 
+
 select{
-padding: 4px 10px;
-background-color: #2C5505;
+	padding: 4px 10px;
+	background-color: var(--grey-6);
   margin-right: 30px;
   margin-left: 30px;
-color: #fff;
-font-size: 1rem;
-display: inline-block;
+	color: #2C5505;
+	font-size: 16px;
+  display: inline-block;
+  border: none;
+  border-radius: 2px; 
+}
+
+.ams-table__value  select{
+	background-color: var(--grey-5);
+	color: black;
 }
 
 option{
-padding: 5px 10px;
+    padding: 5px 10px;
+    border-radius: 2px;
 }
 option:hover{
-opacity: 0.6;
+    opacity: 0.6;
+    background-color: #2C5505;
+}
+.h35{
+	height: 35px;
 }
 
 
@@ -236,7 +250,7 @@ opacity: 0.6;
 }
 
 .ams-table__row {
-  background: var(--grey-7);
+  background: var(--grey-5);
   cursor: pointer;
   transition: all 300ms ease;
 }
@@ -251,6 +265,7 @@ opacity: 0.6;
 .ams-table__row:not(:last-of-type) .ams-table__cell {
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.08);
 }
+/*
 .ams-table__row:first-of-type {
   background: var(--grey-9);
 }
@@ -299,6 +314,7 @@ opacity: 0.6;
   color: var(--grey-2);
   background: var(--grey-9);
 }
+*/
 
 .ams-table__cell {
   padding: 1rem;
@@ -458,6 +474,8 @@ iframe{
 }
 .ams-table__value > input{
   font-size: 1rem;
+  background-color: var(--grey-9);
+  border: none;
   padding: 5px;
     
 }
@@ -526,8 +544,6 @@ iframe{
     width: 80px;
     height: 40px;
     background: green;
-    float: left;
-    margin: 5px;
     -webkit-appearance: none;
     border: none;
     border-radius: 0;
@@ -595,6 +611,7 @@ iframe{
     overflow: hidden;
     margin: auto;
     border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
   }
   .toggle_bar .toggle_square {
@@ -616,7 +633,7 @@ iframe{
     transition: content .2s ease;
     line-height: 30px;
     text-align: center;
-    font-size: 12px;
+    font-size: 1rem;
     text-transform: uppercase;
   }
   
@@ -643,4 +660,65 @@ iframe{
 
 
 
-  
+  .hod_button {
+    width: auto;
+    font-size: 16px;
+	display: inline-block;
+    padding: 10px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.draw-border {
+    box-shadow: inset 0 0 0 2px rgb(187, 186, 186);
+    color: rgb(187, 186, 186);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+}
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+.draw-border::before {
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+.draw-border::after {
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+.draw-border:hover {
+    color: #2c5505;
+}
+.draw-border:hover::before,
+.draw-border:hover::after {
+    border-color: #2c5505;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+.draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 400 1rem "Roboto Slab", sans-serif;
+    padding: 0.25em 0.8em;
+    letter-spacing: 0.02rem;
+}

@@ -178,9 +178,6 @@ a {
     padding: 0.25em 0.8em;
     letter-spacing: 0.02rem;
 }
-.btn:focus {
-    outline: 1px dotted white;
-}
 
 
 
@@ -239,4 +236,37 @@ input[type="email"] {
 .btn {
     font: 400 1.6rem "Roboto Slab", sans-serif;
 }
+}
+
+
+
+
+
+.assistant_div{
+    position: absolute;
+    bottom: 10px;
+    right:10px; 
+}
+
+.assistant_div > a{
+    text-decoration: none;
+}
+
+.assistant_div > a {
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.assistant_div > a > .draw-border {
+    box-shadow: inset 0 0 0 2px rgb(187, 186, 186);
+    color: rgb(187, 186, 186);
+}
+
+.assistant_div > a > .draw-border:hover {
+    color: #2c5505;
+}
+.assistant_div > a > .draw-border:hover::before,
+.assistant_div > a > .draw-border:hover::after {
+    border-color: #2c5505;
 }

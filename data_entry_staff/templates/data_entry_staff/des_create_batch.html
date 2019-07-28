@@ -65,7 +65,7 @@
 					<input type="text" name="new_batch_year" placeholder="Year" pattern="^20[0-9]{2}$" title="1999 < Year < 2100" required>
 					<input type="text" name="starting_roll_no" placeholder="Starting Reg. No." pattern="^\d{3}$" title="Last 3 digits of first roll no." required>
 					<input type="text" name="new_batch_size" placeholder="No. of Students" pattern="^[0-9]*$" title="Only number" required>
-					<button type="submit" name="new_batch_option_btn" id="submit_option_selector">SUBMIT</button>
+					<button type="submit" name="new_batch_option_btn"  class="hod_button btn draw-border" >SUBMIT</button>
 				</form>
 			</div>
 			{% if no_of_students %}
@@ -78,24 +78,24 @@
 				<div class="ams-table">
 					<table class="ams-table__table">
 						<tr class="ams-table-header ">
-							<th> Registration No. </th> 	<!--non editable-->  
+							<th > Registration No. </th> 	<!--non editable-->  
 							<th> Student's Name</th>
 							<th> Student's Email</th>
-							<th> Department</th>     <!--non editable-->  
+							<th > Department</th>     <!--non editable-->  
 						</tr>
 
 						{% for i in no_of_students %}
 						<tr class="ams-table__row ams-table-header">
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_reg_{{ first_roll_no|add:i }}" value="{{ first_roll_no|add:i }}" readonly></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_name_{{ first_roll_no|add:i }}" placeholder="Student's Name" value="" required></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="nb_email_{{ first_roll_no|add:i }}" placeholder="Student's Email" value="" required></span></td>
-							<td class="ams-table__cell"><span class="ams-table__value"><input type="text" name="student_dep" placeholder="Student's Department" value="{{ department }}" readonly></span></td>
+							<td class="ams-table__cell" style=" width: 90px; max-width: 120px;"><span class="ams-table__value"><input style=" width: 90px; max-width: 120px;" type="text" name="nb_reg_{{ first_roll_no|add:i }}" value="{{ first_roll_no|add:i }}" readonly></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input style=" width: 80%; max-width: 85%;" type="text" name="nb_name_{{ first_roll_no|add:i }}" placeholder="Student's Name" value="" required></span></td>
+							<td class="ams-table__cell"><span class="ams-table__value"><input style=" width: 80%; max-width: 85%;" type="text" name="nb_email_{{ first_roll_no|add:i }}" placeholder="Student's Email" value="" required></span></td>
+							<td class="ams-table__cell" style=" width: 90px; max-width: 120px;"><span class="ams-table__value"><input style=" width: 35px; max-width: 90px;" type="text" name="student_dep" placeholder="Student's Department" value="{{ department }}" readonly></span></td>
 						</tr>
 						{% endfor %}
 						
 					</table>
 				</div>
-				<button type="submit" name="new_batch_submit_btn" id="submit_option_selector">SUBMIT</button>
+				<button type="submit" name="new_batch_submit_btn" class="hod_button btn draw-border" >SUBMIT</button>
 			</form>
 			{% elif error %}
 			<h4>{{ error }}</h4>

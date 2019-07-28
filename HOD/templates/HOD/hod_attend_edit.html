@@ -55,7 +55,7 @@
 				<form method="POST" name="select_option_form" >
 					{% csrf_token %}
 					<input type="text" name="hod_attend_edit_regno" id="hod_inp_regno" minlength="10" maxlength=10 autofocus required placeholder="Registration no.">
-					<button type="submit" name="att_mod_filter_btn" id="submit_option_selector">SUBMIT</button>
+					<button type="submit" name="att_mod_filter_btn" class="hod_button btn draw-border" style="height: 33px;"  >SUBMIT</button>
 				</form>
 			</div>	
 
@@ -88,7 +88,7 @@
 					<input type="hidden" name="hod_attend_edit_reg_no" value="{{ attendance.reg_no }}">
 					<input type="date" name="hod_attend_edit_start_date" id="hod_inp_start_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_end_date.min=this.value;this.form.hod_attend_edit_end_date.value=this.value;">
 					<input type="date" name="hod_attend_edit_end_date" id="hod_inp_end_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_start_date.max=this.value;">
-					<button type="submit" name="att_data_submit_btn" id="att_data_submit_btn" form="attendance_form">SUBMIT</button>
+					<button type="submit" name="att_data_submit_btn" class="hod_button btn draw-border"  id="att_data_submit_btn" form="attendance_form">SUBMIT</button>
 				</form>
 			</div>
 			{% elif invalid_reg %}
