@@ -39,7 +39,7 @@
 				<input type="hidden" name="report_course_code" value="{{ report_data.course }}">
 				<input type="hidden" name="report_department" value="{{ report_data.department }}">
 				<input type="hidden" name="report_is_inadequacy" value="{{ report_data.inadequacy }}">
-				<button style="font-size:1.2rem;  width: 320px; margin: 0;" type="submit" class="hod_button btn draw-border">PRINT ATTENDANCE REPORT</button>
+				<button style="font-size:1.2rem;  width: 320px; margin: 0;" type="submit" class="hod_button btn draw-border" onclick="this.style.display='none';">PRINT ATTENDANCE REPORT</button>
 			</form>
 			{% else %}
 			<h2 class="h2_message">Choose a course code to print attendance report.</h3>
