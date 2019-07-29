@@ -866,3 +866,93 @@ img{
     margin-left: 40px;
   }
 
+
+
+
+
+
+
+
+  .bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  
+  .modal-content{
+    width: 520px;
+    height: 360px;
+    background-color: white;
+    border-radius: 4px;
+    position: relative;
+    padding: 20px;
+  }
+  .close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    
+  }
+  iframe{
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
+  .filter_container{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+  .filter_container > .option-picker{
+      height: 250px;
+  }
+  .filter_container .option-picker form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+ .h2_message{
+     margin: 0 auto;
+     color: rgb(192, 192, 192);
+     user-select: none;
+ }
+ .filter_container select, .filter_container button {
+     width: 200px;
+     margin-bottom: 30px;
+     margin-top: 30px;
+ }
+ .filter_container button{
+     width: 240px;
+ }
+ .filter_container .draw-border{
+     height: 40px;
+ }
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

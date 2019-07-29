@@ -14,26 +14,8 @@
 	
 </head>
 <body>
-	<div class="main_body">
-		<div class="ams-faculty_navbar faculty_view_attend_nav">
-			<div>
-			<div class="ams-navbar_logo ">
-				<a class="ams-header-logo_link" target="_blank" href="https://nitnagaland.ac.in">
-					<img src="{% static 'student/img/nitn_logo.png' %}">
-				</a>
-			</div>
-			<h1 id="left_h1"> NIT Nagaland </h1> <h1 id="right_h1"> Attendance Management System  </h1>
-			<span></span>
-			</div>
-			<div class="ams-navbar_links_with_db">
-				<a href="{% url 'faculty' %}">DASHBOARD</a>
-				<a class="link_1" href="{% url 'faculty_view_attend' %}">VIEW ATTENDANCE</a>
-				<a class="link_2" href="{% url 'update_attend' %}">UPDATE ATTENDANCE</a>
-				<a class="link_3" href="{% url 'faculty_logout' %}"> LOGOUT </a>
-				
-			</div>
-		</div>
-		<div class="site-container">
+	
+		<div class="filter_container">
 			<div class="option-picker">	
 				<form method="POST" name="select_option_form" >
 					{% csrf_token %}
@@ -43,9 +25,10 @@
 						<option value="{{ course.course_code }}_{{ course.department }}_{{ course.year }}">{{ course.course_code }}{% if course.duplicate %} | {{ course.department }}{% endif %}</option>
 						{% endfor %}
 					</select>
+					<div></div>
 					<label for="is_inadequacy">Inadequacy</label>
 					<input type="checkbox" class="checkbox check1" name="is_inadequacy">
-					<button style="font-size:1.2rem;" type="submit" class="hod_button btn draw-border">GET REPORT</button>
+					<button style="font-size:1.2rem;" type="submit" class="hod_button btn draw-border">GENERATE REPORT</button>
 				</form>
 			</div>
 		
@@ -56,14 +39,14 @@
 				<input type="hidden" name="report_course_code" value="{{ report_data.course }}">
 				<input type="hidden" name="report_department" value="{{ report_data.department }}">
 				<input type="hidden" name="report_is_inadequacy" value="{{ report_data.inadequacy }}">
-				<input type="submit" class="hod_button btn draw-border" value="Print report">
+				<button style="font-size:1.2rem;  width: 320px; margin: 0;" type="submit" class="hod_button btn draw-border">PRINT ATTENDANCE REPORT</button>
 			</form>
 			{% else %}
-			<h1>Choose a course code to print attendance report.</h1>
+			<h2 class="h2_message">Choose a course code to print attendance report.</h3>
 			{% endif %}
 		</div>
-	</div>
+	
 
-<script src="{% static 'faculty/js/faculty.js' %}"></script>
+
 </body>
 </html>

@@ -9,6 +9,7 @@ for (var i = 0; i < classname_array.length; i++) {
 }
 
 
+
 document.querySelector('.close').addEventListener('click', function(){
     document.querySelector('.bg-modal').style.display='none';
 });
