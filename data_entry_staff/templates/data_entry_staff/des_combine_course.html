@@ -62,7 +62,7 @@
 						{% endfor %}
 					</select>
 					<select name="select_year" required>
-						<option value="" disabled selected>Select Year</option>
+						<option value="" disabled selected>Select Batch</option>
 						{% for year in year_list %}
 						<option value="{{ year }}">{{ year }}</option>
 						{% endfor %}
@@ -119,7 +119,7 @@
 			{% elif error %}
 			<div><h4>{{ error }}</h4></div>
 			{% else %}
-			<div><h1>Select department, year, and semester to choose electives.</h1></div>
+			<div><h1>Select department, batch, and semester to choose electives.</h1></div>
 			{% endif %}
 		</div>
 	</div>

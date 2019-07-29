@@ -263,9 +263,7 @@ def _save_electives(post_array):
         new_elective_list = Semester_wise_electives.objects.get(department=department, year=year, semester=semester)
         new_elective_list.elective_courses = courses_db_string
         new_elective_list.save()
-        print("Done with ELE for overwrite")
     else:
         new_elective_list = Semester_wise_electives.objects.create(department=department, year=year, semester=semester, elective_courses=courses_db_string)
         new_elective_list.save()
-        print("Done with ELE")
     return 'Electives saved for year ' + year + ' in ' + department + ' department semester ' + str(semester)

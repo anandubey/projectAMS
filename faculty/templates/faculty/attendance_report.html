@@ -4,6 +4,7 @@
 -->
 
 {% load static %}
+{% load mathfilters %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
 </head>
-<body style="background-color: #525659; height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<!-- Body bgcolor was kept as background-color: #525659;  -->
+<body style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <div class="report_container">
         <div class="header">
             <div class="image_container">
@@ -28,22 +30,27 @@
             
         </div>
         <div class="dep_title">
-            <span>Department of Computer Science and Engineering</span>
+            <span>Department of {{ report.department_full_name }}</span>
         </div>
         <div class="course_info">
                 <div class="course_info_upper">
-                    <span><b>Semester:</b> VI</span>
-                    <span><b>Course Code:</b> CS969</span>
+                    <span><b>Semester:</b> {{ report.semester }}</span>
+                    <span><b>Course Code:</b> {{ report.course_code }}</span>
                 </div>
                 <div class="course_info_lower">
-                    <span><b>Faculty:</b> Mr.Nagaraju Baydeti </span>
-                    <span><b>Course Title:</b> Python Programming</span>
+                    <span><b>Faculty:</b> {{ report.faculty_name }} </span>
+                    <span><b>Course Title:</b> {{ report.course_title }}</span>
                 </div>
                 
         </div>
+        {% if report.students %}
         <div class="table_title">
+            {% if report.inadequacy %}
             <span>Attendance Details of Candidates having less than 75 percent</span><br>
-            <span> No. of periods handled: 16 (Till 29-03-2019)</span>
+            {% else %}
+            <span>Attendance Details</span><br>
+            {% endif %}
+            <span> No. of periods handled: {{ report.total_classes }} (Till {{ report.date_upto }})</span>
         </div>
         <div class="report_table">
             <table>
@@ -53,17 +60,28 @@
                     <th>No. of periods Attended</th>
                     <th>Percentage of Attendance</th>
                 </tr>
+                {% for student in report.students %}
                 <tr>
-                    <td>2015105131</td>
-                    <td>Manpong B Phom</td>
-                    <td>11</td>
-                    <td>68.75</td>   
+                    <td>{{ student.reg_no }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.present }}</td>
+                    <td>{{ student.present|div:report.total_classes|mul:100 }}</td>   
                 </tr>
+                {% endfor %}
             </table>
         </div>
         <div class="footer">
-            <span>Nagaraju Baydeti<br>Faculty In-charge</span>
-            <span>Thungthung<br> HoD</span>
+            <span>{{ report.faculty_name }}<br>Faculty In-charge</span>
+            <span>{{ report.hod_name }}<br> HoD</span>
         </div>
+        <div id="printcontrol">
+            <button onclick="document.getElementById('printcontrol').style='display: None';window.print();document.getElementById('printcontrol').style='display: inline'">Print this page</button>
+            <button onclick="window.close()">Close this page</button>
+        </div>
+        {% elif report.inadequacy %}
+        <h4>All students have proper attendance. No report to print.</h4>
+        {% else %}
+        <h4>Cannot print report. No attendance given.</h4>
+        {% endif %}
     </div>
 </body>

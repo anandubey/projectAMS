@@ -55,7 +55,7 @@ def course_settings(request,semester=None):
                 course_codes = Semester_wise_course.objects.get(semester=semester, department=department).courses.split('-')
                 if semester > 4:
                     try:
-                        course_codes += Semester_wise_electives.objects.get(department=department, semester=semester, year=batch).elective_courses.split('-')
+                        course_codes += Semester_wise_electives.objects.get(department=department, semester=semester, year=date.today().year).elective_courses.split('-')
                     except Semester_wise_electives.DoesNotExist:
                         pass
                 for faculty in faculty_group:
@@ -356,7 +356,7 @@ def _get_attendance_data_for_batch(department, batch=None, semester=None):
                 percent_present = (present/total)*100
                 percent_list.append(percent_present)
             else:
-                percent_list.append(100.0)
+                percent_list.append(0.0)
         if nocourse:
             return dict()
         student_attendance_list.append({'reg_no':reg_no, 'percent':percent_list})

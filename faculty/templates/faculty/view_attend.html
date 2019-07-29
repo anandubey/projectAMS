@@ -38,8 +38,8 @@
 				<form method="POST" name="select_option_form" >
 					{% csrf_token %}
 					
-					<select name="select_year" required onchange="this.form.submit()">
-						<option value="" disabled selected>Select Year</option>
+					<select name="select_batch" required onchange="this.form.submit()">
+						<option value="" disabled selected>Select Batch</option>
 						{% for year in filters.years %}
 						<option value="{{ year.value }}" {% if year.checked %} selected {% endif %}>{{ year.value }}</option>
 						{% endfor %}
@@ -49,6 +49,12 @@
 						{% for semester in filters.semesters %}
 						<option value="{{ semester.value }}" {% if semester.checked %} selected {% endif %}>Semester {{ semester.value }}</option>
 						{% endfor %}￼ ￼
+					</select>
+					<select name="dep_code" required onchange="this.form.submit()">
+						<option value="" disabled selected>Select Department</option>
+						{% for dep in filters.depcodes %}
+						<option value="{{ dep.code }}" {% if dep.checked %} selected {% endif %}>{{ dep.name }}</option>
+						{% endfor %}
 					</select>
 					<select name="select_course_code" id="select_course_code" required onchange="this.form.submit()">
 						<option value="" disabled selected>Select Course Code</option>
