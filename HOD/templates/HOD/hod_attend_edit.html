@@ -83,28 +83,26 @@
 					</table>
 				</div>
 			</div>					
-				<form method="POST" id="attendance_form">
-					{% csrf_token %}
-					<input type="hidden" name="hod_attend_edit_reg_no" value="{{ attendance.reg_no }}">
-					<input type="date" name="hod_attend_edit_start_date" id="hod_inp_start_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_end_date.min=this.value;this.form.hod_attend_edit_end_date.value=this.value;">
-					<input type="date" name="hod_attend_edit_end_date" id="hod_inp_end_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_start_date.max=this.value;">
-					<button type="submit" name="att_data_submit_btn" class="hod_button btn draw-border"  id="att_data_submit_btn" form="attendance_form">SUBMIT</button>
-				</form>
-			</div>
+			<form method="POST" id="attendance_form">
+				{% csrf_token %}
+				<input type="hidden" name="hod_attend_edit_reg_no" value="{{ attendance.reg_no }}">
+				<input type="date" name="hod_attend_edit_start_date" id="hod_inp_start_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_end_date.min=this.value;this.form.hod_attend_edit_end_date.value=this.value;">
+				<input type="date" name="hod_attend_edit_end_date" id="hod_inp_end_dt" min="{{ attendance.min_date }}" max="{{ attendance.max_date }}" required onchange="this.form.hod_attend_edit_start_date.max=this.value;">
+				<button type="submit" name="att_data_submit_btn" class="hod_button btn draw-border"  id="att_data_submit_btn" form="attendance_form">SUBMIT</button>
+			</form>
 			{% elif invalid_reg %}
-			<div>
 				<h3>Please enter a valid registration number.</h3>
-			</div>
 			{% elif not_found %}
-			<div>
 				<h3>No student found for given registration number.</h3>
-			</div>
 			{% endif %}
-			<div>
-				{{ status }}
-			</div>
-
+			
+			<h2>{{ status }}</h2>
 		</div>
+	</div>
+	<footer class="footer">
+		<span>Developed by Anand Kumar Dubey & Shraddha Kishan Tripathi</span>
+		<span>Guided by Nagaraju Bayedeti</span>
+	</footer>
 
 <script src="{% static 'faculty/js/faculty.js' %}"></script>
 </body>

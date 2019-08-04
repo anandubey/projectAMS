@@ -5,7 +5,7 @@ from faculty.models import FacultyProfile
 def this_year():
     return str(date.today().year)
     
-dep_choices = [('CSE', 'CSE'), ('ECE', 'ECE'), ('EEE', 'EEE'), ('EIE', 'EIE'), ('CE', 'CE'), ('ME', 'ME')]
+dep_choices = [('CSE', 'CSE'), ('ECE', 'ECE'), ('EEE', 'EEE'), ('EIE', 'EIE'),('ME', 'ME'), ('CE', 'CE'), ('SH','SH')]
 
 class Hod_credential(models.Model):
     hod_id = models.CharField(max_length=5, primary_key=True)

@@ -270,3 +270,29 @@ input[type="email"] {
 .assistant_div > a > .draw-border:hover::after {
     border-color: #2c5505;
 }
+
+
+
+
+
+.footer{
+    position: absolute;
+    bottom: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-touch-select: none;
+    -ms-user-select: none;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+@media only screen and (max-width:1160px){
+    .footer{
+        left:10px;
+        margin: 0;
+    }
+}

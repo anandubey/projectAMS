@@ -17,8 +17,9 @@ class attendance(models.Model):
     date = models.DateField( default=date.today)
     course_code = models.CharField(max_length=5)
     attendance = models.CharField(max_length=1)
+    topic = models.CharField(max_length=80, null=False, default='')
     if_mod = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.course_code + " | " + str(self.date) + ' | ' + self.reg_no.reg_no + " | " + self.attendance
+        return self.course_code + " | " + self.topic + " | " + str(self.date) + ' | ' + self.reg_no.reg_no + " | " + self.attendance
 

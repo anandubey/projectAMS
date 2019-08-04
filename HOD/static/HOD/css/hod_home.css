@@ -1,8 +1,8 @@
 html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
-	text-align: center;
-	
-
+  text-align: center;
+  width: 100%;
+  height: 100% !important;
 }
 
 /* Nav Bar of the page */
@@ -12,9 +12,6 @@ html, body {
     
 }
 .hod_main_body{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 100%;
   height: 100% !important;
   font-size: 1rem;
@@ -61,7 +58,7 @@ html, body {
   padding: 12px;
   font-size: 1rem;
   width: auto;
-  height: 46px;
+  height: 47px;
   border: none;
   cursor: pointer;
 }
@@ -103,11 +100,15 @@ html, body {
 .site_container{
   margin: 0 auto;
   width: 100%;
-  height: 100% !important;
+  height: calc(100vh - 100px);
   text-align: center;
 }
 .site_container  h1{
-  margin: 100px 2%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  width:100%;
   color: gray;
   opacity: 0.3;
   font-size: 4rem;
@@ -117,6 +118,39 @@ html, body {
   -ms-user-select: none;
   -webkit-user-select: none;
 }
+.site_container  h2{
+  position: relative;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  width:100%;
+  color: gray;
+  opacity: 0.3;
+  font-size: 3rem;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-touch-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.site_container  h3{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  width:100%;
+  color: gray;
+  opacity: 0.3;
+  font-size: 2.4rem;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-touch-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+
 .site_container > form{
 	margin-bottom: 20px;
 }
@@ -232,10 +266,6 @@ option:hover{
   --trans-black: rgba(33, 37, 42, 0.9);
 }
 
-.ams-attendance_table{
-  height: 100%;
-  
-}
 
 .ams-table {
   width: 60%;
@@ -567,4 +597,23 @@ iframe{
     font: 400 1rem "Roboto Slab", sans-serif;
     padding: 0.25em 0.8em;
     letter-spacing: 0.02rem;
+}
+
+
+.footer{
+  position: relative;
+  clear:both;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  user-select: none;
+  width: 410px;
+  margin: 0 auto;
+  margin-top: -40px;
+  -moz-user-select: none;
+  -ms-touch-select: none;
+  -ms-user-select: none;  
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
 }

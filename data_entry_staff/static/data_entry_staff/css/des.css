@@ -1,6 +1,8 @@
 html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
-    text-align: center;
+	text-align: center;
+	width: 100%;
+	height: 100% !important;
 
 }
 
@@ -11,13 +13,9 @@ html, body {
     
 }
 .hod_main_body{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100% !important;
   font-size: 1rem;
-  padding-bottom: 30px;
 }
 .hod_view_att_main_body{
   min-width: 1030px;
@@ -104,20 +102,23 @@ html, body {
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  
   text-align: center;
 }
 .site_container  h1{
-  margin: 100px 2%;
-  color: gray;
-  opacity: 0.3;
-  font-size: 5rem;
-  user-select: none;
-  -moz-user-select: none;
-  -ms-touch-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-}
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translate(50%,-50%);
+	width:100%;
+	color: gray;
+	opacity: 0.3;
+	font-size: 4rem;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-touch-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+  }
 
 
 .option-picker{
@@ -721,4 +722,24 @@ iframe{
     font: 400 1rem "Roboto Slab", sans-serif;
     padding: 0.25em 0.8em;
     letter-spacing: 0.02rem;
+}
+
+
+
+.footer{
+  position: relative;
+  clear:both;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  user-select: none;
+  width: 410px;
+  margin: 0 auto;
+  margin-top: -40px;
+  -moz-user-select: none;
+  -ms-touch-select: none;
+  -ms-user-select: none;  
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
 }

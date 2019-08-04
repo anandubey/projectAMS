@@ -37,7 +37,7 @@ def update_attend(request):
             selected_date = request.POST.get('att_date')
             user_set = None
             date_exist = False
-            if not attendance.objects.filter(date=selected_date).exists():
+            if not attendance.objects.filter(date=selected_date,course_code=course_code).exists():
                 user_set = StudentProfile.objects.filter(reg_no__startswith=batch, department=department)
             else:
                 date_exist = True
@@ -206,12 +206,13 @@ def _get_filters(username=None, selected_batch=None, selected_department=None, s
 def _save_attendance_data(post_array):
     date = post_array.get('attendance_date')
     course_code = post_array.get('course_code')
+    topic = post_array.get('topic','')
     print('COURSE CODE',course_code)
     for key, value in post_array.items():
         if key.startswith('reg_'):
             stu_inst = StudentProfile.objects.get(reg_no=key[4:])
             if stu_inst is not None:
-                attend_instance = attendance.objects.create(reg_no=stu_inst, date=date, course_code=course_code, attendance=value, if_mod=False)
+                attend_instance = attendance.objects.create(reg_no=stu_inst, date=date, course_code=course_code, attendance=value, topic=topic, if_mod=False)
                 attend_instance.save()
 
 

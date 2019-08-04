@@ -101,7 +101,7 @@ def add_course(request):
             errormsg = 'Course code ' + course_code_entered + ' already exists in database.'
             return render(request, 'data_entry_staff/des_add_course.html',{'error':errormsg})
 
-        new_course = Course.objects.create(course_code=course_code_entered, title=course_title_entered, elective=course_is_elective)
+        new_course = Course.objects.create(course_code=course_code_entered.upper(), title=course_title_entered, elective=course_is_elective)
         new_course.save()
 
         return render(request, 'data_entry_staff/des_add_course.html',{'success':'Course added successfully.', 'new_course':new_course})

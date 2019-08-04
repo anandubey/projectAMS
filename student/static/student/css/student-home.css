@@ -753,4 +753,21 @@ body {
 
 
 
+.footer{
+    position: relative;
+    clear:both;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    user-select: none;
+    margin: 0 auto;
+    margin-top: -40px;
+    -moz-user-select: none;
+    -ms-touch-select: none;
+    -ms-user-select: none;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
 
