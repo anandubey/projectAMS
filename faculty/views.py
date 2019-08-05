@@ -207,6 +207,7 @@ def _save_attendance_data(post_array):
     date = post_array.get('attendance_date')
     course_code = post_array.get('course_code')
     topic = post_array.get('topic','')
+    topic = topic[:80]
     print('COURSE CODE',course_code)
     for key, value in post_array.items():
         if key.startswith('reg_'):

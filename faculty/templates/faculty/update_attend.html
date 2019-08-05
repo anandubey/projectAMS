@@ -72,7 +72,7 @@
 				<input type="hidden" name="attendance_date" id="attendance_date" value="{{ filters.selected_date }}">
 				<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
 				<label class="topic_label" for="topic">Topic:</label>
-				<input type="text" class="topic_name" name="topic" max_length="80" placeholder="Topic Taught (80 characters)">
+				<input type="text" class="topic_name" name="topic" max_length="80" placeholder="Topic Taught" pattern="\b[,.a-zA-Z0-9\s]{5,80}\b" title="80 alphanumeric characters with no whitespace, comma, or dot at the ends" required>
 				<div class="attendance-editor"></div>
 				<div class="ams-table">
 					<table class="ams-table__table">
