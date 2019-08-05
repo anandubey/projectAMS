@@ -2,7 +2,7 @@ html, body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
 	text-align: center;
 	width: 100%;
-	height: 100% !important;
+	
 
 }
 
@@ -14,7 +14,7 @@ html, body {
 }
 .hod_main_body{
   width: 100%;
-  height: 100% !important;
+  height:100% !important;
   font-size: 1rem;
 }
 .hod_view_att_main_body{
@@ -101,9 +101,15 @@ html, body {
 .site_container{
   margin: 0 auto;
   width: 100%;
+  min-height: 580px;
   height: 100%;
+  padding-bottom: 80px;
   text-align: center;
 }
+.site_container > form{
+  height:100%;
+}
+
 .site_container  h1{
 	position: absolute;
 	top: 50%;
@@ -218,10 +224,7 @@ option:hover{
   --trans-black: rgba(33, 37, 42, 0.9);
 }
 
-.ams-attendance_table{
-  height: 100%;
-  
-}
+
 
 .ams-table {
   width: 60%;
