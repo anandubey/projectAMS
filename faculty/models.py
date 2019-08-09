@@ -18,8 +18,9 @@ class attendance(models.Model):
     course_code = models.CharField(max_length=5)
     attendance = models.CharField(max_length=1)
     topic = models.CharField(max_length=80, null=False, default='')
+    no_of_classes = models.IntegerField(null=False, default=1, choices=[(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8)])
     if_mod = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.course_code + " | " + self.topic + " | " + str(self.date) + ' | ' + self.reg_no.reg_no + " | " + self.attendance
+        return self.course_code + " | " + self.topic + " | " + str(self.no_of_classes) + " | " + str(self.date) + ' | ' + self.reg_no.reg_no + " | " + self.attendance
 

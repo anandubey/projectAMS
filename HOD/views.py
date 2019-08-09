@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from django.db.models import Min, Max
+from django.db.models import Min, Max, Sum
 from .models import Hod_credential, Course, Semester_wise_course, Course_allot, Semester_wise_electives
 from faculty.models import FacultyProfile, attendance
 from student.models import StudentProfile
@@ -178,8 +178,11 @@ def view_student_attendance_semester_wise(request, sem=None, reg_no=None):
                     
                 att_data_list = []                                         # using list of dictionaries to store attendance 
                 for course_code in courses:
-                    total = attendance.objects.filter(reg_no=student, course_code=course_code).count()
-                    present = attendance.objects.filter(reg_no=student, course_code=course_code, attendance='P').count()
+                    total = attendance.objects.filter(reg_no=student, course_code=course_code).aggregate(total_classes=Sum('no_of_classes')).get('total_classes')
+                    total = total if total is not None else 0
+                    present = attendance.objects.filter(reg_no=student, course_code=course_code, attendance='P').aggregate(classes_present=Sum('no_of_classes')).get('classes_present')
+                    present = present if present is not None else 0
+
                     if total != 0:
                         percent_present = (present/total)*100
                     else:
@@ -349,8 +352,10 @@ def _get_attendance_data_for_batch(department, batch=None, semester=None):
         percent_list = []
         nocourse = True
         for course_code in courses:
-            total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).count()
-            present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').count()
+            total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).aggregate(total_classes=Sum('no_of_classes')).get('total_classes')
+            total = total if total is not None else 0
+            present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').aggregate(classes_present=Sum('no_of_classes')).get('classes_present')
+            present = present if present is not None else 0
             if total != 0:
                 nocourse = False
                 percent_present = (present/total)*100
@@ -392,8 +397,10 @@ def _get_attendance_data_for_student(student_profile):
             pass
     
     for course_code in courses:
-        total = attendance.objects.filter(reg_no=student_profile, course_code=course_code).count()
-        present = attendance.objects.filter(reg_no=student_profile, course_code=course_code, attendance='P').count()
+        total = attendance.objects.filter(reg_no=student_profile, course_code=course_code).aggregate(total_classes=Sum('no_of_classes')).get('total_classes')
+        total = total if total is not None else 0
+        present = attendance.objects.filter(reg_no=student_profile, course_code=course_code, attendance='P').aggregate(classes_present=Sum('no_of_classes')).get('classes_present')
+        present = present if present is not None else 0
         if total != 0:
             percent_present = (present/total)*100
         else:

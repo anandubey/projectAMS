@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.db.models import F
+from django.db.models import F, Sum
 from datetime import date
 from .models import FacultyProfile, attendance
 from student.models import StudentProfile
@@ -163,6 +163,67 @@ def generate_report(request):
         return render(request, 'faculty/attendance_report.html', {})
 
 
+def lesson_plan(request):
+    if not request.session.get('logged'):
+        return redirect('home')
+    user_type = request.session.get('user_type')
+    if user_type != 'faculty':
+        return redirect('home')
+
+    faculty_id = request.session.get('username')
+    courses = _get_courses_for_report(faculty_id)
+    if request.method == 'POST':
+        course_dep_year = request.POST.get('course_code').split('_')
+        course_code = course_dep_year[0]
+        department = course_dep_year[1]
+        year = course_dep_year[2]
+        
+        lesson_plan = dict()
+        lesson_plan['year'] = year
+        lesson_plan['course'] = course_code
+        lesson_plan['department'] = department
+        lesson_plan['is_ready'] = True
+        return render(request, 'faculty/filter_lesson_plan.html',{'course_filter':courses, 'report_data':lesson_plan})
+    else:
+        return render(request, 'faculty/filter_lesson_plan.html',{'course_filter':courses})
+
+
+def generate_lesson_plan(request):    
+    if request.method == 'POST':
+        course_code = request.POST.get('report_course_code')
+        course_title = Course.objects.get(course_code=course_code).title
+        dep = request.POST.get('report_department').upper()
+        department_code = _depcode(dep)
+        dep_full_name = _dep_full_name(dep)
+        batch = request.POST.get('report_course_year')
+        hod_id = Hod_credential.objects.get(department=dep).hod_id
+        hod_name = FacultyProfile.objects.get(faculty_id=hod_id).name
+        faculty_name = FacultyProfile.objects.get(faculty_id=request.session.get('username')).name
+        
+        this_semester = (date.today().year - int(batch))*2
+        if date.today().month >= 7:
+            this_semester += 1
+        
+        lesson_data = _get_lesson_plan_for_course(course_code, batch, department_code)
+        max_date = date.today().strftime('%d-%m-%Y')
+
+        lesson_plan = dict()
+        
+        lesson_plan['semester'] = this_semester
+        lesson_plan['date_upto'] = max_date
+        lesson_plan['course_code'] = course_code
+        lesson_plan['course_title'] = course_title
+        lesson_plan['hod_name'] = hod_name
+        lesson_plan['faculty_name'] = faculty_name
+        lesson_plan['department_full_name'] = dep_full_name
+        lesson_plan['total_classes'] = lesson_data.get('total', None)
+        lesson_plan['dates'] = lesson_data.get('dates')
+        
+        return render(request, 'faculty/lesson_plan.html', {'report':lesson_plan})
+    else:
+        return render(request, 'faculty/lesson_plan.html', {})
+
+
 def faculty_logout(request):
     request.session.clear()
     return redirect('home')
@@ -208,12 +269,13 @@ def _save_attendance_data(post_array):
     course_code = post_array.get('course_code')
     topic = post_array.get('topic','')
     topic = topic[:80]
-    print('COURSE CODE',course_code)
+    no_of_classes = int(post_array.get('no_of_classes',1))
+    print('COURSE CODE',course_code, no_of_classes)
     for key, value in post_array.items():
         if key.startswith('reg_'):
             stu_inst = StudentProfile.objects.get(reg_no=key[4:])
             if stu_inst is not None:
-                attend_instance = attendance.objects.create(reg_no=stu_inst, date=date, course_code=course_code, attendance=value, topic=topic, if_mod=False)
+                attend_instance = attendance.objects.create(reg_no=stu_inst, date=date, course_code=course_code, attendance=value, topic=topic, no_of_classes=no_of_classes, if_mod=False)
                 attend_instance.save()
 
 
@@ -276,8 +338,10 @@ def _get_attendance_data_for_course(course_code, batch, dep_code, inadequacy=Fal
     max_classes = 0
     students.sort()
     for reg_no in students:
-        total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).count()
-        present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').count()
+        total = attendance.objects.filter(reg_no=reg_no, course_code=course_code).aggregate(total_classes=Sum('no_of_classes')).get('total_classes')
+        total = total if total is not None else 0
+        present = attendance.objects.filter(reg_no=reg_no, course_code=course_code, attendance='P').aggregate(classes_present=Sum('no_of_classes')).get('classes_present')
+        present = present if present is not None else 0
         
         if total != 0:
             nocourse = False
@@ -290,6 +354,21 @@ def _get_attendance_data_for_course(course_code, batch, dep_code, inadequacy=Fal
     attendance_data['total'] = max_classes
     attendance_data['students'] = student_attendance_list
 
+    return attendance_data
+
+
+def _get_lesson_plan_for_course(course_code, batch, dep_code):
+    try:
+        classes = list(attendance.objects.filter(course_code=course_code, reg_no__reg_no__startswith=(batch+dep_code)).values('date','topic','no_of_classes').distinct().order_by('date'))
+        total_classes = 0
+        for lecture in classes:
+            total_classes += lecture.get('no_of_classes')
+    except attendance.DoesNotExist:
+        return dict()
+
+    attendance_data = dict()
+    attendance_data['total'] = total_classes
+    attendance_data['dates'] = classes
     return attendance_data
 
 

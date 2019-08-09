@@ -1,0 +1,50 @@
+<!--
+	author: geekyAnand
+	© pyJaC
+-->
+
+{% load mathfilters %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NITN-AMS | Faculty | Lesson Plan</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'faculty/css/faculty-home.css' %}">
+	
+</head>
+<body>
+	
+		<div class="filter_container">
+			<div class="option-picker">	
+				<form method="POST" name="select_option_form" >
+					{% csrf_token %}
+					<select name="course_code" required>
+						<option value="" disabled selected>Select Course</option>
+						{% for course in course_filter %}
+						<option value="{{ course.course_code }}_{{ course.department }}_{{ course.year }}">{{ course.course_code }}{% if course.duplicate %} | {{ course.department }}{% endif %}</option>
+						{% endfor %}
+					</select>
+					<div></div>
+					<button style="font-size:1.2rem;" type="submit" class="hod_button btn draw-border">GENERATE LESSON PLAN</button>
+				</form>
+			</div>
+		
+			{% if report_data.is_ready %}
+			<form method="POST" action="{% url 'print_lesson_plan' %}" target="_blank">
+				{% csrf_token %}
+				<input type="hidden" name="report_course_year" value="{{ report_data.year}}">
+				<input type="hidden" name="report_course_code" value="{{ report_data.course }}">
+				<input type="hidden" name="report_department" value="{{ report_data.department }}">
+				
+				<button style="font-size:1.2rem;  width: 320px; margin: 0;" type="submit" class="hod_button btn draw-border" onclick="this.style.display='none';">PRINT LESSON PLAN</button>
+			</form>
+			{% else %}
+			<h2 class="h2_message">Choose a course code to print lesson plan.</h3>
+			{% endif %}
+		</div>
+	
+
+
+</body>
+</html>

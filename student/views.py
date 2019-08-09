@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Sum
 from .models import StudentProfile
 from faculty.models import attendance
 from HOD.models import Semester_wise_course, Semester_wise_electives
@@ -27,8 +28,11 @@ def student(request):
                     pass
             att_data_list = []                                         # using list of dictionaries to store attendance 
             for course_code in courses:
-                total = attendance.objects.filter(reg_no=user_instance, course_code=course_code).count()
-                present = attendance.objects.filter(reg_no=user_instance, course_code=course_code, attendance='P').count()
+                total = attendance.objects.filter(reg_no=user_instance, course_code=course_code).aggregate(total_classes=Sum('no_of_classes')).get('total_classes')
+                total = total if total is not None else 0
+                present = attendance.objects.filter(reg_no=user_instance, course_code=course_code, attendance='P').aggregate(classes_present=Sum('no_of_classes')).get('classes_present')
+                present = present if present is not None else 0
+                
                 if total != 0:
                     percent_present = (present/total)*100
                 else:

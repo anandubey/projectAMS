@@ -73,6 +73,17 @@
 				<input type="hidden" name="course_code" value="{{ filters.selected_course }}">
 				<label class="topic_label" for="topic">Topic:</label>
 				<input type="text" class="topic_name" name="topic" max_length="80" placeholder="Topic Taught" pattern="\b[,.a-zA-Z0-9\s]{5,80}\b" title="80 alphanumeric characters with no whitespace, comma, or dot at the ends" required>
+				<label for="no_of_classes">No. of classes:</label>
+				<select name="no_of_classes" required>
+					<option value="1" selected>1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+				</select>
 				<div class="attendance-editor"></div>
 				<div class="ams-table">
 					<table class="ams-table__table">

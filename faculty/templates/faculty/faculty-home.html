@@ -35,7 +35,10 @@
 		<div class="site-container">
 			<h1 >Please select any of the above options to continue...</h1>
 			<div class="attendance_report_div" onclick="document.getElementById('modal_frame').src='{% url 'attendance_report' %}'; document.getElementsByClassName('bg-modal')[0].style.display='flex';">
-				<button type="submit" class="hod_button btn draw-border">PRINT THE ATTENDANCE REPORT</button>
+				<button type="submit" class="hod_button btn draw-border">ATTENDANCE REPORT</button>
+			</div>
+			<div class="attendance_report_div" onclick="document.getElementById('modal_frame').src='{% url 'lesson_plan' %}'; document.getElementsByClassName('bg-modal')[0].style.display='flex';">
+				<button type="submit" class="hod_button btn draw-border">LESSON PLAN</button>
 			</div>
 		</div>
 	</div>
@@ -46,8 +49,8 @@
 		</div>
 	</div>
 	<footer class="footer">
-		<span>Developed by Anand Kumar Dubey & Shraddha Kishan Tripathi</span>
-		<span>Guided by Nagaraju Bayedeti</span>
+		<span>Developed by Anand Kumar Dubey & Shraddha Kishan Tripathi (CSE 2017)</span>
+		<span>Under guidance of Nagaraju Baydeti</span>
 	</footer>
 	
 
