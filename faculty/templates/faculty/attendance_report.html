@@ -75,8 +75,8 @@
             <span>{{ report.hod_name }}<br> HoD</span>
         </div>
         <div id="printcontrol">
-            <button onclick="document.getElementById('printcontrol').style='display: None';window.print();document.getElementById('printcontrol').style='display: inline'">Print this page</button>
-            <button onclick="window.close()">Close this page</button>
+            <button class="hod_button btn draw-border" onclick="document.getElementById('printcontrol').style='display: None';window.print();document.getElementById('printcontrol').style='display: inline'">Print this page</button>
+            <button class="hod_button btn draw-border" onclick="window.close()">Close this page</button>
         </div>
         {% elif report.inadequacy %}
         <h4>All students have proper attendance. No report to print.</h4>

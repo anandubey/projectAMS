@@ -290,7 +290,7 @@ input[type="email"] {
     
 }
 
-@media only screen and (max-width:1160px){
+@media only screen and (max-width:1170px){
     .footer{
         left:10px;
         margin: 0;
