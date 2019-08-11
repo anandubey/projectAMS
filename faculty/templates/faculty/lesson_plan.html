@@ -72,11 +72,15 @@
             <span>{{ report.hod_name }}<br> HoD</span>
         </div>
         <div id="printcontrol">
-            <button onclick="document.getElementById('printcontrol').style='display: None';window.print();document.getElementById('printcontrol').style='display: inline'">Print this page</button>
-            <button onclick="window.close()">Close this page</button>
+            <button class="hod_button btn draw-border" onclick="document.getElementById('printcontrol').style='display: None';window.print();document.getElementById('printcontrol').style='display: inline'">Print this page</button>
+            <button class="hod_button btn draw-border" onclick="window.close()">Close this page</button>
         </div>
         {% else %}
         <h4>Cannot print lesson report. No class taken.</h4>
         {% endif %}
+        <div class="info_footer">
+            NOTE: This is a computer generated report & does not require a signature.
+        </div>
     </div>
+    
 </body>
