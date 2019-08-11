@@ -26,7 +26,7 @@
 						{% endfor %}
 					</select>
 					<div></div>
-					<button style="font-size:1.2rem;" type="submit" class="hod_button btn draw-border">GENERATE LESSON PLAN</button>
+					<button style="width:300px;font-size:1.2rem;" type="submit" class="hod_button btn draw-border">GENERATE LESSON PLAN</button>
 				</form>
 			</div>
 		
@@ -37,7 +37,7 @@
 				<input type="hidden" name="report_course_code" value="{{ report_data.course }}">
 				<input type="hidden" name="report_department" value="{{ report_data.department }}">
 				
-				<button style="font-size:1.2rem;  width: 320px; margin: 0;" type="submit" class="hod_button btn draw-border" onclick="this.style.display='none';">PRINT LESSON PLAN</button>
+				<button style="width:300px;font-size:1.2rem;" type="submit" class="hod_button btn draw-border" onclick="this.style.display='none';">PRINT LESSON PLAN</button>
 			</form>
 			{% else %}
 			<h2 class="h2_message">Choose a course code to print lesson plan.</h3>

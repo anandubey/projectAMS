@@ -521,9 +521,7 @@ label {
 
 
 @media only screen and (max-width:895px){
-    .site-container > h1{
-        margin-top: 80px;
-    }
+    
     
     .faculty_view_attend_nav{
         min-width: 500px;
@@ -647,6 +645,11 @@ label {
     position: absolute;
     bottom: 10px;
     right:10px; 
+}
+.lesson_plan{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 .attendance_report_div > a{
@@ -964,7 +967,7 @@ img{
     user-select: none;
     width: 410px;
     margin: 0 auto;
-    margin-top: -40px;
+    margin-top: -50px;
     -moz-user-select: none;
     -ms-touch-select: none;
     -ms-user-select: none;  
@@ -972,11 +975,4 @@ img{
     align-items: center;
     flex-direction: column;
     
-}
-@media only screen and (max-width:1048px){
-    .footer{
-        left:10px;
-        margin: 0;
-        margin-top: -40px;
-    }
 }
