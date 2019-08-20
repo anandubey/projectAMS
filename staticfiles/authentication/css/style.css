@@ -1,0 +1,298 @@
+/*
+    author: g33kyAnand
+*/
+
+body,
+html {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    margin: auto;
+}
+.user_card {
+    height: 430px;
+    width: 430px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgba(235, 235, 235, 0.6);
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+.container img {
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-bottom: 30px;
+}
+.container form {
+    position: relative;
+    top: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: 1px solid #34495e;
+    width: 50%;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+a {
+    color: #fff;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.outline {
+    position: relative;
+    z-index: 3;
+    background: transparent;
+    color: #2c5505;
+    font-size: 1rem;
+    border: 1px solid #2c5505;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+}
+a {
+    text-decoration: none;
+}
+
+.outline:hover {
+    color: white;
+    background: #2c5505;
+    border-color: white;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+.white-blue {
+    border: 1px solid #2c5505;
+    font-weight: 700;
+    color: #2c5505;
+    border-color: white;
+    background: white;
+}
+.white-blue:hover {
+    color: white;
+    background: #2c5505;
+    border-color: white;
+}
+
+.hod_button_div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    background-color: #2c5505;
+    padding: 20px 0;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+}
+
+.hod_button_div > a {
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+.hod_button {
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+}
+
+.draw-border {
+    box-shadow: inset 0 0 0 2px #2c5505;
+    color: white;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+}
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+.draw-border::before {
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+.draw-border::after {
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+.draw-border:hover {
+    color: white;
+}
+.draw-border:hover::before,
+.draw-border:hover::after {
+    border-color: white;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+.draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 400 1rem "Roboto Slab", sans-serif;
+    padding: 0.25em 0.8em;
+    letter-spacing: 0.02rem;
+}
+
+
+
+
+
+
+
+
+/* styling for mobile*/
+@media only screen and (max-width: 480px) {
+.user_card {
+    height: 75%;
+    width: 90%;
+    min-height: 548px;
+    max-height: 548px;
+}
+
+.container img {
+    width: 35%;
+    height: auto;
+    margin-top: -17.5%;
+    margin-bottom: 30px;
+}
+.container form {
+    position: relative;
+    top: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 80%;
+	opacity: 0.8;
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+.outline {
+    font-size: 1.6rem;
+    padding: 10px 40px;
+}
+
+
+
+.hod_button_div {
+    padding: 10px 0;
+}
+
+
+.hod_button {
+   width: auto;
+   height: auto;
+}
+
+.btn {
+    font: 400 1.6rem "Roboto Slab", sans-serif;
+}
+}
+
+
+
+
+
+.assistant_div{
+    position: absolute;
+    bottom: 10px;
+    right:10px; 
+}
+
+.assistant_div > a{
+    text-decoration: none;
+}
+
+.assistant_div > a {
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.assistant_div > a > .draw-border {
+    box-shadow: inset 0 0 0 2px rgb(187, 186, 186);
+    color: rgb(187, 186, 186);
+}
+
+.assistant_div > a > .draw-border:hover {
+    color: #2c5505;
+}
+.assistant_div > a > .draw-border:hover::before,
+.assistant_div > a > .draw-border:hover::after {
+    border-color: #2c5505;
+}
+
+
+
+
+
+.footer{
+    position: absolute;
+    bottom: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-touch-select: none;
+    -ms-user-select: none;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+@media only screen and (max-width:1170px){
+    .footer{
+        left:10px;
+        margin: 0;
+    }
+}

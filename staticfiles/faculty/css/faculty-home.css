@@ -1,0 +1,984 @@
+/*
+    author: g33kyAnand
+*/
+
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Nav Bar of the page */
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.main_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100% !important;
+}
+
+.ams-faculty_navbar{
+    width: 100%;
+    overflow: hidden;
+    height: 48px;
+    line-height: 48px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.ams-navbar_logo > a > img{
+	float: left;
+    padding-top: 2px;
+    padding-left: 3px;
+    width: 42px;
+    height: 42px;
+}
+.ams-faculty_navbar > div{
+    width: auto;
+}
+
+.ams-faculty_navbar > div > h1 {
+    float: left;
+    width: auto;
+    font-size: 1.6rem;
+    color: #2c5505;
+    margin-left: 10px;
+    user-select: none;
+}
+
+.ams-navbar_links{
+	float: right;
+}
+
+.ams-navbar_links > a{
+	padding: 0 10px;
+	display: inline-block;
+}
+
+.ams-navbar_links > a:hover{
+    background: #2C5505;
+    color: white;
+}
+
+a{
+    color:#2C5505;
+    text-decoration: none;
+}
+a:hover{
+    color:white;
+}
+
+.ams-navbar_links_with_db{
+	float: right;
+}
+
+.ams-navbar_links_with_db > a{
+	padding: 0 10px;
+	display: inline-block;
+}
+
+.ams-navbar_links_with_db > a:hover{
+    background: #2C5505;
+    color: white;
+}
+
+
+.site-container{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.site-container  h1{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+    width:100%;
+    color: gray;
+    opacity: 0.3;
+    font-size: 4rem;
+    user-select: none;
+}
+
+.option-picker{
+	width: 100%;
+    height: 70px;
+    vertical-align: middle;
+    margin-bottom: 40px;
+}
+
+.attendance-editor{
+    margin: 0 auto;
+    top: 5%;
+    width: 600px;
+    
+   
+}
+
+
+
+/* styling select tag */
+
+.option-picker > form{
+    margin: 20px 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+ select{
+	padding: 4px 10px;
+	background-color: var(--grey-7);
+    margin-right: 30px;
+    margin-left: 30px;
+	color: #2C5505;
+	font-size: 16px;
+    display: inline-block;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2px; 
+}
+
+option{
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+option:hover{
+    opacity: 0.6;
+    background-color: #2C5505;
+}
+
+
+
+
+
+
+
+  /* calendar */
+  [type="date"] {
+      
+    background:#fff url("../img/calendar_icon.png")  97% 50% no-repeat ;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  
+  /* custom styles */
+  
+  input[type="date"] {
+    min-width: 128px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;
+    height: 23px;
+	margin-right: 30px;
+  }
+
+
+
+
+
+/* radio button */
+
+
+label {
+	display: inline-block;
+	text-align:center;
+	position:relative;
+    cursor:pointer;
+}
+.label_present > span {
+   background:white;
+   color: #2C5505;
+   line-height:32px;
+   height:32px;
+   padding:0 16px;
+   display:block;
+   transition:all .2s ease;
+}
+.label_absent > span {
+    background:white;
+    color: #2C5505;
+    line-height:32px;
+    height:32px;
+    padding:0 16px;
+    display:block;
+    transition:all .2s ease;
+ }
+ label:first-of-type > span {
+	border-top-left-radius:6px;
+	border-bottom-left-radius:6px;
+	border-right:0;
+}
+ label:last-of-type > span {
+	border-top-right-radius:6px;
+	border-bottom-right-radius:6px;
+	border-left:0;
+}
+ label input {
+	display:none
+}
+.label_present input:checked + span {
+    background: greenyellow;
+	box-shadow:inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+.label_absent input:checked + span {
+    background: red;
+    color: white;
+	box-shadow:inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+
+
+.topic_name{
+    font-size: 1rem;
+    height: 30px;
+    line-height: 30px;
+}
+
+.topic_label{
+    font-size: 1.2rem;
+}
+
+
+
+/* styling table */
+
+
+:root {
+    --white: white;
+    --grey-1: #343a40;
+    --grey-2: #495057;
+    --grey-3: #868e96;
+    --grey-4: #adb5bd;
+    --grey-5: #ced4da;
+    --grey-6: #dee2e6;
+    --grey-7: #e9ecef;
+    --grey-8: #f1f3f5;
+    --grey-9: #f8f9fa;
+    --trans-black: rgba(33, 37, 42, 0.9);
+}
+
+
+
+.ams-table {
+    width: 60%;
+    min-width: 545px;
+    max-width: 780px;
+    margin: 3rem auto 3rem;
+    border-radius: 0.4rem;
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1),
+        0px 5px 12px rgba(0, 0, 0, 0.07);
+}
+@media screen and (max-width: 800px) {
+    .ams-table {
+        margin: 0 auto;
+    }
+}
+.ams-table__table {
+    width: 100%;
+    border-spacing: 0;
+    color: var(--grey-3);
+}
+.ams-table__value {
+    display: block;
+    font-size: 18px;
+}
+
+.ams-table__row {
+    background: var(--grey-7);
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.ams-table__row:hover,
+.ams-table__row:focus {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+    box-shadow: 0px 15px 28px rgba(0, 0, 0, 0.1),
+        0px 5px 12px rgba(0, 0, 0, 0.08);
+    transition: all 300ms ease;
+}
+.ams-table__row:not(:last-of-type) .ams-table__cell {
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.08);
+}
+.ams-table__row:first-of-type {
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(4) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(4) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(6) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(6) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(8) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(8) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+
+.ams-table__row:nth-of-type(10) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(10) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__cell {
+    padding: 1rem;
+}
+
+.ams-table-header {
+    text-align: center;
+    min-width: 545px;
+    width: 100%;
+}
+.ams-table-header > th{
+    padding: 14px;
+    font-size: 1.3rem;
+}
+.ams-table-header-data {
+    border: 4px;
+}
+
+
+
+
+
+
+@media only screen and (max-width:1238px){
+    .faculty_view_attend_nav > div > h1{
+        display: none;
+    }
+    .faculty_view_attend_nav > div > span::after{
+        float: left;
+        content: 'NIT Nagaland - AMS';
+        font-size: 1.6rem;
+        padding-left: 10px;
+        line-height: 48px;
+        color: #2C5505;
+        font-weight: 700;
+        display: block;
+        position: relative;
+    }
+}
+
+
+@media only screen and (max-width:1120px){
+   
+    .ams-faculty_navbar > div > h1{
+        display: none;
+    }
+    select{
+        margin-right: 25px;
+        margin-left: 25px;
+    }
+    .ams-faculty_navbar > div > span::after{
+        float: left;
+        content: 'NIT Nagaland - AMS';
+        font-size: 1.6rem;
+        padding-left: 10px;
+        line-height: 48px;
+        color: #2C5505;
+        font-weight: 700;
+        display: block;
+        position: relative;
+    }
+    .up_att_option-picker > form{
+        
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #drop_down{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}
+
+
+@media only screen and (max-width:910px){
+    .site-container > h1{
+        font-size: 4.5rem
+    }
+    .faculty_view_attend_nav{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 140px;
+        background: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .faculty_view_attend_nav > div{
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .faculty_view_attend_nav > div > h1{
+        display: none;
+    }
+    .faculty_view_attend_nav > div > span{
+        display: none;
+    }
+    select{
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .faculty_view_attend_nav > div > .ams-navbar_logo > a > img {
+        height: 65px;
+        width: 65px;
+    }
+    .faculty_view_attend_nav > .ams-navbar_links_with_db{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        color: #2C5505;
+    }
+    
+    .faculty_view_attend_nav > .ams-navbar_links_with_db > a{
+        padding: 12px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        width: 25%;
+        font-size: 1.12rem; 
+    }
+}
+
+
+@media only screen and (max-width:895px){
+    
+    
+    .faculty_view_attend_nav{
+        min-width: 500px;
+        height: 140px;
+        
+    }
+    
+    
+
+    .faculty_view_attend_nav > .ams-navbar_links_with_db > a{
+        padding: 12px;
+        padding-top: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        font-size: 1rem; 
+    }
+}
+
+
+
+@media only screen and (max-width:830px){
+    .site-container > h1{
+        font-size: 4.5rem
+    }
+    body{
+        font-size: 1.2rem;
+    }
+
+    .ams-faculty_navbar{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 140px;
+        background: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .ams-faculty_navbar > div{
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .ams-faculty_navbar > div > h1{
+        display: none;
+    }
+    span{
+        display: none;
+    }
+
+    .ams-navbar_logo > a > img {
+        height: 65px;
+        width: 65px;
+    }
+    .ams-navbar_links{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        color: #2C5505;
+    }
+    
+    .ams-navbar_links > a{
+        padding: 12px;
+        font-weight: 600;
+        width: 33.33%;
+        font-size: 1.3rem; 
+    }
+    
+}
+
+
+@media only screen and (max-width:780px){
+    .site-container > h1{
+        font-size: 4rem
+    }
+    .ams-faculty_navbar{
+        min-width:500px; 
+    }
+    select{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .ams-navbar_links > a{
+        font-size: 1rem; 
+        line-height: 24px;
+        font-weight: 600;
+    }
+}
+
+
+
+@media only screen and (max-width:480px){
+    .site-container > h1{
+        margin-top: 80px;
+    }
+    body{
+        font-size: 1rem;
+    }
+    .ams-faculty_navbar{
+        
+        height: 140px;
+        
+    }
+    .ams-navbar_links > a{
+        padding: 12px;
+        padding-top: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        font-size: 1rem; 
+    }
+}
+
+
+
+
+
+
+
+.attendance_report_div{
+    position: absolute;
+    bottom: 10px;
+    right:10px; 
+}
+.lesson_plan{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.attendance_report_div > a{
+    text-decoration: none;
+}
+
+.attendance_report_div > a {
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+.hod_button {
+    width: auto;
+    font-size: 16px;
+	display: inline-block;
+    padding: 10px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.draw-border {
+    box-shadow: inset 0 0 0 2px rgb(187, 186, 186);
+    color: rgb(187, 186, 186);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+}
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+.draw-border::before {
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+.draw-border::after {
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+.draw-border:hover {
+    color: #2c5505;
+}
+.draw-border:hover::before,
+.draw-border:hover::after {
+    border-color: #2c5505;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+.draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 400 1rem "Roboto Slab", sans-serif;
+    padding: 0.25em 0.8em;
+    letter-spacing: 0.02rem;
+}
+
+
+
+
+
+
+.report_container{
+    padding-top: 10mm;
+    width: 745px;
+    height: 100%;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+.header_container{
+    margin-left: 40px;
+    display: flex;
+    font-size: 1.2rem;
+    flex-direction: column;
+    font-weight: 550;
+}
+.header_container > span{
+    line-height: 23px;
+}
+.dep_title{
+    width: 100%;
+    padding: 20px;
+    line-height: 23px;
+    font-size: 1.2rem;
+}
+.course_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: 23px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.course_info_upper, .course_info_lower{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 23px;
+    align-items: center;
+    width: 600px;
+}
+.course_info_upper > span, .course_info_lower > span {
+    margin-right: 20px;
+    line-height: 23px;
+    margin-left: 20px;
+}
+.table_title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 23px;
+    padding: 20px;
+    font-weight: 600;
+}
+.report_table{
+    width: 700px;
+}
+.report_table > table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.report_table > table, .report_table th,  .report_table td{
+    border: 1px solid black;
+}
+.report_table th, .report_table td{
+    padding: 5px 10px;
+}
+
+.report_footer{
+    position: relative;
+    padding: 100px;
+    width: 100%;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@page {
+    size: 21cm 29.7cm;
+}
+
+
+
+
+
+
+
+
+
+.checkbox {
+    width: 80px;
+    height: 40px;
+    background: green;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    position: relative;
+    outline: none;
+  }
+  .checkbox:before, .checkbox:after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+  
+  .check1 {
+    background: #F1F1F1;
+    border-radius: 100px;
+    padding: 2px;
+    transition: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+  }
+  .check1:before, .check1:after {
+    transition: 0.5s;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 0 0 10px -5px rgba(0,0,0,.5);
+    border-radius: 50%;
+  }
+  .check1:before {
+    background: #00e359;
+  }
+  .check1:after {
+    background: white;
+  }
+  .check1:checked {
+    box-shadow: 0 0 0 20px #00e359 inset;
+  }
+  .check1:checked:before {
+    width: 76px;
+  }
+  .check1:checked:after {
+    margin-left: 40px;
+  }
+
+
+
+
+
+
+
+
+  .bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  
+  .modal-content{
+    width: 520px;
+    height: 360px;
+    background-color: white;
+    border-radius: 4px;
+    position: relative;
+    padding: 20px;
+  }
+  .close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    
+  }
+  iframe{
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
+  .filter_container{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+  .filter_container > .option-picker{
+      height: 250px;
+  }
+  .filter_container .option-picker form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+ .h2_message{
+     margin: 0 auto;
+     color: rgb(192, 192, 192);
+     user-select: none;
+ }
+ .filter_container select, .filter_container button {
+     width: 200px;
+     margin-bottom: 30px;
+     margin-top: 30px;
+ }
+ .filter_container button{
+     width: 240px;
+ }
+ .filter_container .draw-border{
+     height: 40px;
+ }
+
+ 
+
+
+
+
+
+
+
+.footer{
+    position: relative;
+    clear:both;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    user-select: none;
+    width: 485px;
+    margin: 0 auto;
+    margin-top: -40px;
+    -moz-user-select: none;
+    -ms-touch-select: none;
+    -ms-user-select: none;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info_footer{
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    margin-top: 10px;
+}

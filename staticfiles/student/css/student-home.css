@@ -1,0 +1,774 @@
+/* 
+  author: g33kyAnand
+*/
+
+html,
+body {
+    font-family: "Roboto", "Helvetica", sans-serif;
+    height: 100%;
+}
+
+.site_content{
+    min-height: 100%;
+    width: 100%;
+    min-width: 1130px;
+}
+
+
+/* Header or Nav Bar of the page */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ams-navbar {
+    width: 100%;
+    overflow: hidden;
+    height: 48px;
+    vertical-align: middle;
+    line-height: 48px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ams-navbar > h1 {
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #2c5505;
+}
+
+.ams-logo {
+    float: left;
+    padding-top: 2px;
+    padding-left: 3px;
+    width: 44px;
+    height: 44px;
+}
+
+.student-logout {
+    font-size: 1rem;
+    float: right;
+    color: #2c5505;
+    height: auto;
+    padding: 0 20px;
+    text-decoration: none;
+    display: block;
+    margin-right: 5px;
+}
+
+.student-logout:hover {
+    background-color: #2c5505;
+    color: white;
+}
+
+
+/* styling the content */
+
+#wrapper{
+    height: 100%;
+    width: 100%;
+    padding-top: 30px;
+}
+#wrapper > div {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#leftcolumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 49%;
+}
+
+#rightcolumn {
+    width: 50%; 
+}
+
+
+.ams-details_wrapper {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    width: 65%;
+    max-width: 551px;
+    min-width: 550px;
+    border-radius: 12px;
+}
+
+
+
+/* styling the id card */
+
+.id_card {
+    display: flex;
+    flex-direction: column;
+}
+#card_head {
+    background: #025402;
+    height: 30%;
+    border-top-right-radius: 12px;
+    display: flex;
+    border-top-left-radius: 12px;
+    order: 1;
+}
+
+.id_card_logo {
+    opacity: 0.9;
+    height: 75px;
+    margin-left: 8px;
+    margin-top: 4px;
+    order: 1;
+}
+
+#header_div {
+    color: white;
+    order: 2;
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#header_div > p {
+    margin-top: 12px;
+    line-height: 20px;
+}
+
+#card_body {
+    display: flex;
+    height: 230px;
+    order: 3;
+    font-size: 17px;
+    color: black;
+}
+
+#card_write {
+    order: 1;
+    margin-left: 12px;
+    width: 75%;
+    margin-top: -25px;
+    text-align: left;
+}
+
+.id_card_avatar {
+    order: 2;
+    width: 160px;
+    margin-top: 20px;
+    margin-right: 18px;
+    margin-bottom: 47px;
+}
+
+
+
+
+
+.ams-attendance_table > h1 {
+    font-size: 1.8rem;
+   
+}
+
+
+
+/* styling table */
+:root {
+    --white: white;
+    --grey-1: #343a40;
+    --grey-2: #495057;
+    --grey-3: #868e96;
+    --grey-4: #adb5bd;
+    --grey-5: #ced4da;
+    --grey-6: #dee2e6;
+    --grey-7: #e9ecef;
+    --grey-8: #f1f3f5;
+    --grey-9: #f8f9fa;
+    --trans-black: rgba(33, 37, 42, 0.9);
+}
+
+.ams-table {
+    width: 100%;
+    max-width: 576px;
+    min-width: 430px;
+    margin: 3rem auto 3rem;
+    border-radius: 0.4rem;
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1),
+        0px 5px 12px rgba(0, 0, 0, 0.07);
+}
+@media screen and (max-width: 800px) {
+    .ams-table {
+        margin: 0 auto;
+    }
+}
+.ams-table__table {
+    width: 100%;
+    border-spacing: 0;
+    color: var(--grey-3);
+}
+.ams-table__value {
+    display: block;
+    font-size: 18px;
+}
+
+.ams-table__row {
+    background: var(--grey-7);
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.ams-table__row:hover,
+.ams-table__row:focus {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+    box-shadow: 0px 15px 28px rgba(0, 0, 0, 0.1),
+        0px 5px 12px rgba(0, 0, 0, 0.08);
+    transition: all 300ms ease;
+}
+.ams-table__row:not(:last-of-type) .ams-table__cell {
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.08);
+}
+.ams-table__row:first-of-type {
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(2) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(3) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(4) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(4) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(5) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(6) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(6) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(7) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(8) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(8) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+.ams-table__row:nth-of-type(9) .ams-table__cell:first-of-type {
+    background: var(--grey-6);
+    color: var(--grey-2);
+}
+
+.ams-table__row:nth-of-type(10) {
+    color: var(--grey-2);
+    background: var(--grey-9);
+}
+.ams-table__row:nth-of-type(10) .ams-table__cell:first-of-type {
+    background: var(--grey-4);
+    color: var(--grey-2);
+}
+.ams-table__cell {
+    padding: 1rem;
+}
+
+.ams-table-header {
+    text-align: center;
+}
+.ams-table-header > th{
+    padding: 14px;
+    font-size: 1.4rem;
+}
+.ams-table-header-data {
+    border: 4px;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width:1145px) {
+    .site_content{
+        font: 1.2rem;
+    }
+
+    .site_content{
+        width: 100%;
+        min-width: 420px;
+    }
+
+    .ams-navbar {
+        position: relative;
+        height: 70px;
+        line-height: 70px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+    .ams-navbar > h1 {
+        display: none;
+    }
+    .ams-navbar > div {
+        float: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ams-logo {
+        padding-top: 2px;
+        padding-left: 3px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    
+    .student-logout {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-right: 0;
+    }
+    
+    .student-logout:hover {
+        background-color: #2c5505;
+        color: white;
+    }
+    
+        
+    #wrapper{
+        padding-top: 80px;
+    }
+    #wrapper > div {
+
+        flex-direction: column;
+    }
+
+    #leftcolumn {
+        width: 100%;
+    }
+
+    #rightcolumn {
+        margin-top: 200px;
+        width: 100%; 
+    }
+
+    .ams-details_wrapper {
+        width: 68%;
+        max-width: 820px;
+        min-width: 820px;
+    }
+
+/* styling the id card */
+
+    
+    #card_head {
+        height: 35%;
+    }
+
+    .id_card_logo {
+        height: 100px;
+        margin-top: 10px;
+    }
+
+    #header_div {
+        font-size: 1.4rem;
+    }
+
+    #header_div > p {
+        margin-top: 12px;
+        line-height: 28px;
+    }
+
+    #card_body {
+        height: 286px;
+        font-size: 1.4rem;
+    }
+    .id_card_avatar {
+        width: 232px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+
+
+
+/* styling table */
+
+    .ams-attendance_table > h1 {
+        font-size: 2.6rem;
+    }
+    .ams-table {
+        width: 100%;
+        max-width: 940px;
+        min-width: 940px;
+        margin: 2.6rem auto 2.6rem;
+        border-radius: 0.4rem;
+    }
+    
+    .ams-table__value {
+        display: block;
+        font-size: 1.4rem;
+    }
+
+    .ams-table__cell {
+        padding: 1.3rem;
+    }
+    
+    .ams-table-header {
+        text-align: center;
+    }
+    .ams-table-header > th{
+        padding: 16px;
+        font-size: 1.8rem;
+    }
+    
+}
+
+
+
+@media only screen and (max-width:955px) {
+    
+    #rightcolumn {
+        margin-top: 100px;
+    }
+    
+    .student-logout {
+        font-weight: 700;
+    }
+    .ams-details_wrapper {
+        width: 55%;
+        max-width: 720px;
+        min-width: 720px;
+    }
+
+
+    #header_div {
+        font-size: 1.2rem;
+    }
+    #header_div > p {
+        margin-top: 8px;
+        line-height: 24px;
+    }
+
+
+   
+    #card_body {
+        height: 236px;
+        font-size: 1.2rem;
+    }
+    .id_card_avatar {
+        width: 186px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+
+
+
+/* styling table */
+
+    .ams-attendance_table > h1 {
+        font-size: 2.6rem;
+    }
+    .ams-table {
+        width: 100%;
+        max-width: 760px;
+        min-width: 760px;
+        margin: 2rem auto 2rem;
+        border-radius: 0.4rem;
+    }
+    
+    .ams-table__value {
+        display: block;
+        font-size: 1.2rem;
+    }
+
+    .ams-table__cell {
+        padding: 1.2rem;
+    }
+    
+    .ams-table-header {
+        text-align: center;
+    }
+    .ams-table-header > th{
+        padding: 16px;
+        font-size: 1.5rem;
+    }
+    
+}
+
+
+@media only screen and (max-width:755px ) {
+    .site_content{
+        font: 1rem;
+    }
+
+    .ams-navbar {
+        min-width: 600px;
+        height: 60px;
+        line-height: 60px;
+    }
+    
+    .ams-logo {
+        
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .student-logout {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+    
+    #leftcolumn{
+        min-width: 600px;
+    }
+    #rightcolumn{
+        min-width: 600px;
+    }
+    
+   
+    .ams-details_wrapper {
+        width: 45%;
+        max-width: 590px;
+        min-width: 590px;
+    }
+
+/* styling the id card */
+
+    
+    #card_head {
+        height: 35%;
+    }
+
+    .id_card_logo {
+        height: 75px;
+        margin-top: 5px;
+    }
+
+    #header_div {
+        font-size: 1rem;
+    }
+
+    #header_div > p {
+        margin-top: 6px;
+        line-height: 20px;
+    }
+
+    #card_body {
+        height: 200px;
+        font-size: 1rem;
+    }
+    .id_card_avatar {
+        width: 146px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+    
+/* styling table */
+
+.ams-attendance_table > h1 {
+    font-size: 2.0rem;
+}
+.ams-table {
+    width: 100%;
+    max-width: 600px;
+    min-width: 600px;
+    margin: 2rem auto 2rem;
+    border-radius: 0.4rem;
+}
+
+.ams-table__value {
+    display: block;
+    font-size: 1rem;
+}
+
+.ams-table__cell {
+    padding: 1rem;
+}
+
+.ams-table-header {
+    text-align: center;
+}
+.ams-table-header > th{
+    padding: 16px;
+    font-size: 1.2rem;
+}
+}
+
+
+
+
+
+/* for mobile */
+
+
+
+@media only screen and (max-width:500px) {
+    
+    .site_content{
+        width: 100%;
+    }
+
+    .ams-navbar {
+        width: 100%;
+        position: relative;
+        height: 100px;
+        line-height: 100px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+   
+    
+    .ams-logo {
+        padding-top: 2px;
+        padding-left: 3px;
+        width: 90px;
+        height: 90px;
+    }
+    
+    
+    .student-logout {
+        font-size: 1.6rem;
+    }
+    
+    #rightcolumn {
+        margin-top: 80px;
+    }
+   
+    .ams-details_wrapper {
+        width: 98%;
+        min-width: 400px;
+        max-width: 588px;
+    }
+
+/* styling the id card */
+
+    
+    #card_head {
+        height: 35%;
+    }
+
+    .id_card_logo {
+        height: 70px;
+        margin-top: 10px;
+    }
+
+    #header_div {
+        font-size: 1rem;
+    }
+
+    #header_div > p {
+        margin-top: 10px;
+        line-height: 20px;
+    }
+
+    #card_body {
+        height: 200px;
+        font-size: 1rem;
+    }
+    .id_card_avatar {
+        width: 136px;
+        margin-top: 24px;
+        margin-right: 18px;
+        margin-bottom: 30px;
+    }
+
+
+
+/* styling table */
+
+    .ams-attendance_table > h1 {
+        font-size: 2rem;
+    }
+    .ams-table {
+        width: 100%;
+        max-width: 560px;
+        min-width: 400px;
+        margin: 2.6rem auto 2.6rem;
+        border-radius: 0.4rem;
+    }
+    
+    .ams-table__value {
+        display: block;
+        font-size: 1rem;
+    }
+
+    .ams-table__cell {
+        padding: 0.8rem;
+    }
+    
+    .ams-table-header {
+        text-align: center;
+    }
+    .ams-table-header > th{
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+    
+}
+
+
+
+.footer{
+    position: relative;
+    clear:both;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    user-select: none;
+    margin: 0 auto;
+    margin-top: -40px;
+    -moz-user-select: none;
+    -ms-touch-select: none;
+    -ms-user-select: none;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+
+
